@@ -1,0 +1,264 @@
+{
+  "app": {
+    "title": "Architecture",
+    "primaryColor": "#5C6BC0",
+    "theme": "minimal"
+  },
+  "nav": [
+    {
+      "id": "arch",
+      "label": "Architecture",
+      "icon": "account_tree",
+      "screen": "arch"
+    },
+    {
+      "id": "classes",
+      "label": "Widgets",
+      "icon": "widgets",
+      "screen": "classes"
+    },
+    {
+      "id": "ref",
+      "label": "Reference",
+      "icon": "menu_book",
+      "screen": "ref"
+    },
+    {
+      "id": "data",
+      "label": "Packages",
+      "icon": "table_rows",
+      "screen": "data"
+    }
+  ],
+  "screens": {
+    "ref": {
+      "title": "Widget reference",
+      "body": {
+        "type": "column",
+        "children": [
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "Every flutterboard widget and its options. Tap a widget name to expand its attributes; each line shows the option, its type, and (where fixed) its allowed values. Search to jump to an option."
+          },
+          {
+            "type": "cards",
+            "table": "catalog",
+            "groupBy": "widget",
+            "collapsible": true,
+            "search": true,
+            "searchColumns": [
+              "widget",
+              "attr",
+              "detail"
+            ],
+            "title": "attr",
+            "subtitle": "detail",
+            "tags": [
+              {
+                "column": "type"
+              }
+            ],
+            "expandable": false
+          }
+        ]
+      }
+    },
+    "classes": {
+      "title": "Widget map",
+      "body": {
+        "type": "column",
+        "children": [
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "flutterboard widgets and what each depends on. Blue = flutterboard-native; green = datakit (the data layer they read from); amber = imported external packages (flutter_map / maplibre). Drag a node to rearrange, tap to rename, pinch or use the zoom buttons to see it all. Arrows show the dependency chain."
+          },
+          {
+            "type": "canvas",
+            "nodesTable": "wnodes",
+            "edgesTable": "wedges",
+            "labelColumn": "label",
+            "xColumn": "x",
+            "yColumn": "y",
+            "fromColumn": "from",
+            "toColumn": "to",
+            "edgeLabelColumn": "label",
+            "colorColumn": "pkg",
+            "colors": {
+              "flutterboard": "blue",
+              "datakit": "green",
+              "imported": "amber"
+            },
+            "height": 560,
+            "action": {
+              "fn": "editRow"
+            }
+          },
+          {
+            "type": "row",
+            "wrap": true,
+            "children": [
+              {
+                "type": "button",
+                "label": "New widget node",
+                "icon": "add",
+                "action": {
+                  "fn": "addRow",
+                  "args": {
+                    "table": "wnodes"
+                  }
+                }
+              },
+              {
+                "type": "button",
+                "label": "New link",
+                "icon": "add",
+                "action": {
+                  "fn": "addRow",
+                  "args": {
+                    "table": "wedges"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "arch": {
+      "title": "The package stack",
+      "body": {
+        "type": "column",
+        "children": [
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "The isan package stack — each layer depends on the one below it. Drag a node to reposition, tap to rename. Add a package or dependency with the buttons below."
+          },
+          {
+            "type": "canvas",
+            "nodesTable": "nodes",
+            "edgesTable": "edges",
+            "labelColumn": "label",
+            "xColumn": "x",
+            "yColumn": "y",
+            "fromColumn": "from",
+            "toColumn": "to",
+            "height": 540,
+            "action": {
+              "fn": "editRow"
+            }
+          },
+          {
+            "type": "row",
+            "wrap": true,
+            "children": [
+              {
+                "type": "button",
+                "label": "New package",
+                "icon": "add",
+                "action": {
+                  "fn": "addRow",
+                  "args": {
+                    "table": "nodes"
+                  }
+                }
+              },
+              {
+                "type": "button",
+                "label": "New dependency",
+                "icon": "add",
+                "action": {
+                  "fn": "addRow",
+                  "args": {
+                    "table": "edges"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "data": {
+      "title": "Packages & dependencies",
+      "body": {
+        "type": "column",
+        "children": [
+          {
+            "type": "text",
+            "value": "Packages",
+            "style": "subtitle"
+          },
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "One row per package in the stack. Tap to edit its name or position."
+          },
+          {
+            "type": "table",
+            "table": "nodes",
+            "columns": [
+              "label",
+              "x",
+              "y"
+            ],
+            "height": 240,
+            "action": {
+              "fn": "editRow"
+            }
+          },
+          {
+            "type": "button",
+            "label": "New package",
+            "icon": "add",
+            "action": {
+              "fn": "addRow",
+              "args": {
+                "table": "nodes"
+              }
+            }
+          },
+          {
+            "type": "divider"
+          },
+          {
+            "type": "text",
+            "value": "Dependencies",
+            "style": "subtitle"
+          },
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "Which package depends on which. Tap to change the direction or label."
+          },
+          {
+            "type": "table",
+            "table": "edges",
+            "columns": [
+              "from",
+              "to",
+              "label"
+            ],
+            "height": 240,
+            "action": {
+              "fn": "editRow"
+            }
+          },
+          {
+            "type": "button",
+            "label": "New dependency",
+            "icon": "add",
+            "action": {
+              "fn": "addRow",
+              "args": {
+                "table": "edges"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "taskly",
+  "name": "Taskly",
+  "icon": "check_circle",
+  "store": {
+    "type": "sqflite",
+    "namespace": "isan_taskly"
+  },
+  "seedVersion": "2026-06-15.roadmap"
+}

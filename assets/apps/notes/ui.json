@@ -1,0 +1,83 @@
+{
+  "app": {
+    "title": "Notes",
+    "primaryColor": "#B28704",
+    "theme": "sepia"
+  },
+  "nav": [
+    {
+      "id": "notes",
+      "label": "Notes",
+      "icon": "sticky_note",
+      "screen": "notes"
+    }
+  ],
+  "screens": {
+    "notes": {
+      "title": "Notes",
+      "body": {
+        "type": "column",
+        "children": [
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "Quick notes for whatever's on your mind. Pinned notes stay on top. Tap a note to edit it."
+          },
+          {
+            "type": "button",
+            "label": "New note",
+            "icon": "add",
+            "action": {
+              "fn": "addRow",
+              "args": {
+                "table": "notes",
+                "values": {
+                  "date": "2026-06-05"
+                }
+              }
+            }
+          },
+          {
+            "type": "cards",
+            "table": "notes",
+            "groupBy": "pinned",
+            "groupOrder": [
+              "true",
+              "false"
+            ],
+            "sort": {
+              "column": "date",
+              "dir": "desc"
+            },
+            "title": "title",
+            "subtitle": "body",
+            "tags": [
+              {
+                "column": "pinned",
+                "colors": {
+                  "true": "amber",
+                  "false": "gray"
+                }
+              }
+            ],
+            "expandable": true,
+            "expandFields": [
+              {
+                "column": "body",
+                "label": "Note"
+              },
+              {
+                "column": "date",
+                "label": "Date"
+              }
+            ],
+            "open": "Edit note",
+            "action": {
+              "fn": "editRow"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "arch_map",
+  "name": "Architecture",
+  "icon": "account_tree",
+  "store": {
+    "type": "sqflite",
+    "namespace": "isan_arch_map"
+  },
+  "seedVersion": "2026-06-12.1"
+}

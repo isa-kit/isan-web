@@ -1,0 +1,46 @@
+{
+  "messages": [
+    {
+      "name": "topic",
+      "type": "text",
+      "label": "Topic"
+    },
+    {
+      "name": "body",
+      "type": "text",
+      "label": "Message",
+      "required": true
+    },
+    {
+      "name": "direction",
+      "type": "enum",
+      "label": "Direction",
+      "options": [
+        "toClaude",
+        "fromClaude"
+      ],
+      "default": "toClaude"
+    },
+    {
+      "name": "status",
+      "type": "enum",
+      "label": "Status",
+      "options": [
+        "draft",
+        "sent",
+        "applied"
+      ],
+      "default": "draft"
+    },
+    {
+      "name": "createdAt",
+      "type": "text",
+      "label": "Created"
+    },
+    {
+      "name": "updatedAt",
+      "type": "text",
+      "label": "Updated"
+    }
+  ]
+}

@@ -1,0 +1,161 @@
+{
+  "app": {
+    "title": "Suite",
+    "primaryColor": "#3F51B5",
+    "theme": "paper"
+  },
+  "nav": [
+    { "id": "home", "label": "Home", "icon": "dashboard", "screen": "home" },
+    { "id": "sheets", "label": "Sheets", "icon": "table_chart", "screen": "sheets" },
+    { "id": "docs", "label": "Docs", "icon": "menu_book", "screen": "docs" },
+    { "id": "notes", "label": "Notes", "icon": "sticky_note", "screen": "notes" }
+  ],
+  "screens": {
+    "home": {
+      "title": "Suite",
+      "body": {
+        "type": "column",
+        "children": [
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "One productivity suite, three tools. Tap a tool to open it — or use the bottom tabs. Everything here shares one store, so it backs up and syncs as a single applet."
+          },
+          {
+            "type": "cards",
+            "table": "tools",
+            "title": "name",
+            "subtitle": "tagline",
+            "sortBy": "order",
+            "sortDir": "asc",
+            "expandable": false,
+            "action": {
+              "fn": "goto",
+              "args": { "screenColumn": "screen" }
+            }
+          }
+        ]
+      }
+    },
+    "sheets": {
+      "title": "Sheets",
+      "body": {
+        "type": "column",
+        "children": [
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "A spreadsheet workbook. Use the switcher to flip between sheets; tap a cell to edit it, and add rows or new columns straight from the grid."
+          },
+          {
+            "type": "dataview",
+            "tables": ["sheet_budget", "sheet_roster"],
+            "height": 460
+          }
+        ]
+      }
+    },
+    "docs": {
+      "title": "Docs",
+      "body": {
+        "type": "column",
+        "children": [
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "Your document tree. Tap a page to open and edit its rich text; tap the + on a page to add a child page (sub-tab); drag-hold a page to re-nest it."
+          },
+          {
+            "type": "button",
+            "label": "New page",
+            "icon": "add",
+            "action": {
+              "fn": "addRow",
+              "args": { "table": "pages", "values": { "title": "Untitled" } }
+            }
+          },
+          {
+            "type": "tree",
+            "table": "pages",
+            "parentColumn": "parentId",
+            "titleColumn": "title",
+            "orderColumn": "order",
+            "action": { "fn": "editRow" },
+            "addChild": true,
+            "reorder": "hold",
+            "holdMs": 600,
+            "filterable": true
+          },
+          {
+            "type": "button",
+            "label": "Browse all pages",
+            "icon": "list",
+            "action": { "fn": "goto", "args": { "screen": "docs_all" } }
+          }
+        ]
+      }
+    },
+    "docs_all": {
+      "title": "All pages",
+      "body": {
+        "type": "column",
+        "children": [
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "A flat list of every page, newest edit first. Tap to open."
+          },
+          {
+            "type": "table",
+            "table": "pages",
+            "columns": ["title", "updatedAt"],
+            "sort": { "column": "updatedAt", "dir": "desc" },
+            "action": { "fn": "editRow" }
+          }
+        ]
+      }
+    },
+    "notes": {
+      "title": "Notes",
+      "body": {
+        "type": "column",
+        "children": [
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "Quick notes for whatever's on your mind. Pinned notes stay on top. Tap a note to edit it."
+          },
+          {
+            "type": "button",
+            "label": "New note",
+            "icon": "add",
+            "action": {
+              "fn": "addRow",
+              "args": { "table": "notes", "values": { "date": "2026-06-14" } }
+            }
+          },
+          {
+            "type": "cards",
+            "table": "notes",
+            "groupBy": "pinned",
+            "groupOrder": ["true", "false"],
+            "sortBy": "date",
+            "sortDir": "desc",
+            "title": "title",
+            "subtitle": "body",
+            "tags": [
+              { "column": "pinned", "colors": { "true": "amber", "false": "gray" } }
+            ],
+            "expandable": true,
+            "expandFields": [
+              { "column": "body", "label": "Note" },
+              { "column": "date", "label": "Date" }
+            ],
+            "open": "Edit note",
+            "action": { "fn": "editRow" }
+          }
+        ]
+      }
+    }
+  }
+}

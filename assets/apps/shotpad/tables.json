@@ -1,0 +1,10 @@
+{
+  "tables": [
+    {
+      "name": "shots",
+      "label": "Shots",
+      "icon": "image",
+      "description": "Pasted screenshots with ink, text labels and patch overlays — re-editable, copy regions back to the clipboard."
+    }
+  ]
+}

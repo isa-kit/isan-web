@@ -1,0 +1,6 @@
+{
+  "tables": [
+    { "name": "nodes", "label": "Tables", "icon": "account_tree", "description": "One node per table across all apps." },
+    { "name": "edges", "label": "Relationships", "icon": "list", "description": "Reference relationships between tables (the engine's foreign keys)." }
+  ]
+}

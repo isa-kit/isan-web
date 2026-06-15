@@ -1,0 +1,6 @@
+{
+  "tables": [
+    { "name": "events", "label": "Events", "icon": "event", "description": "Events with a start date, location, coordinates, RSVP state, and tags." },
+    { "name": "tags", "label": "Tags", "icon": "local_offer", "description": "Tags used to categorise events." }
+  ]
+}

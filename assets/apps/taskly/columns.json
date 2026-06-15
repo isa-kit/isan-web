@@ -1,0 +1,168 @@
+{
+  "tasks": [
+    {
+      "name": "title",
+      "type": "text",
+      "label": "Title",
+      "required": true
+    },
+    {
+      "name": "status",
+      "type": "enum",
+      "label": "Status",
+      "options": [
+        "todo",
+        "doing",
+        "done"
+      ],
+      "default": "todo"
+    },
+    {
+      "name": "parentId",
+      "type": "ref",
+      "label": "Parents",
+      "refTable": "tasks",
+      "advanced": true,
+      "multi": true
+    },
+    {
+      "name": "order",
+      "type": "number",
+      "label": "Order"
+    },
+    {
+      "name": "scheduledStart",
+      "type": "date",
+      "label": "Scheduled",
+      "advanced": true
+    },
+    {
+      "name": "due",
+      "type": "date",
+      "label": "Due"
+    },
+    {
+      "name": "createdAt",
+      "type": "date",
+      "label": "Created",
+      "default": "today"
+    },
+    {
+      "name": "completed",
+      "type": "date",
+      "label": "Completed",
+      "advanced": true
+    },
+    {
+      "name": "completedTime",
+      "type": "text",
+      "label": "Completed time",
+      "advanced": true
+    },
+    {
+      "name": "estimateMins",
+      "type": "number",
+      "label": "Estimate (min)",
+      "advanced": true
+    },
+    {
+      "name": "notes",
+      "type": "text",
+      "label": "Notes"
+    },
+    {
+      "name": "profiles",
+      "type": "ref",
+      "refTable": "profiles",
+      "multi": true,
+      "label": "Profiles",
+      "advanced": true
+    },
+    {
+      "name": "updatedAt",
+      "type": "date",
+      "label": "Updated",
+      "default": "today"
+    },
+    {
+      "name": "endDate",
+      "type": "date",
+      "label": "End date"
+    },
+    {
+      "name": "dependsOn",
+      "type": "ref",
+      "refTable": "tasks",
+      "multi": true,
+      "label": "Depends on",
+      "advanced": true
+    },
+    {
+      "name": "assignee",
+      "type": "text",
+      "label": "Assignee",
+      "advanced": true
+    },
+    {
+      "name": "actualMins",
+      "type": "number",
+      "label": "Actual (mins)",
+      "advanced": true
+    },
+    {
+      "name": "repeat",
+      "type": "text",
+      "label": "Repeat (d:1 / w:1 / m:1)",
+      "advanced": true
+    },
+    {
+      "name": "timerStart",
+      "type": "text",
+      "label": "Timer running since",
+      "advanced": true
+    }
+  ],
+  "notes": [
+    {
+      "name": "title",
+      "type": "text",
+      "label": "Title",
+      "required": true
+    },
+    {
+      "name": "body",
+      "type": "text",
+      "label": "Body"
+    },
+    {
+      "name": "date",
+      "type": "date",
+      "label": "Date",
+      "default": "today"
+    },
+    {
+      "name": "tags",
+      "type": "text",
+      "label": "Tags"
+    },
+    {
+      "name": "pinned",
+      "type": "bool",
+      "label": "Pinned",
+      "default": false
+    }
+  ],
+  "profiles": [
+    {
+      "name": "name",
+      "type": "text",
+      "label": "Name",
+      "required": true
+    },
+    {
+      "name": "color",
+      "type": "text",
+      "label": "Color"
+    }
+  ]
+}

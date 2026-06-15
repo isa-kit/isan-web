@@ -1,0 +1,10 @@
+{
+  "id": "diagram",
+  "name": "Diagram",
+  "icon": "account_tree",
+  "store": {
+    "type": "sqflite",
+    "namespace": "isan_diagram"
+  },
+  "seedVersion": "2026-06-05.2"
+}

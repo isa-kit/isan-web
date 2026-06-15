@@ -1,0 +1,224 @@
+{
+  "app": {
+    "title": "Design Board",
+    "primaryColor": "#546E7A",
+    "theme": "minimal"
+  },
+  "nav": [
+    {
+      "id": "board",
+      "label": "Board",
+      "icon": "dashboard_customize",
+      "screen": "board"
+    },
+    {
+      "id": "sketch",
+      "label": "Sketch",
+      "icon": "draw",
+      "screen": "sketch"
+    },
+    {
+      "id": "talk",
+      "label": "Discussion",
+      "icon": "forum",
+      "screen": "talk"
+    },
+    {
+      "id": "data",
+      "label": "Data",
+      "icon": "table_rows",
+      "screen": "data"
+    }
+  ],
+  "screens": {
+    "board": {
+      "title": "Design board",
+      "body": {
+        "type": "column",
+        "children": [
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "Drag boxes to arrange, drag the corner handle to resize, tap to edit the label and note. Amber = a question for Claude; coral = Claude's answer. With the local file mirror on, everything here lands in apps/design/data/ as JSON for Claude to read."
+          },
+          {
+            "type": "canvas",
+            "nodesTable": "boxes",
+            "edgesTable": "links",
+            "labelColumn": "label",
+            "xColumn": "x",
+            "yColumn": "y",
+            "widthColumn": "w",
+            "heightColumn": "h",
+            "fromColumn": "from",
+            "toColumn": "to",
+            "edgeLabelColumn": "label",
+            "colorColumn": "kind",
+            "colors": {
+              "idea": "blue",
+              "screen": "teal",
+              "data": "green",
+              "engine": "purple",
+              "question": "amber",
+              "answer": "coral"
+            },
+            "height": 560,
+            "action": {
+              "fn": "editRow"
+            }
+          },
+          {
+            "type": "row",
+            "wrap": true,
+            "children": [
+              {
+                "type": "button",
+                "label": "Box",
+                "icon": "add",
+                "action": {
+                  "fn": "addRow",
+                  "args": {
+                    "table": "boxes",
+                    "values": {
+                      "kind": "idea"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "button",
+                "label": "Screen",
+                "icon": "add",
+                "action": {
+                  "fn": "addRow",
+                  "args": {
+                    "table": "boxes",
+                    "values": {
+                      "kind": "screen"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "button",
+                "label": "Question for Claude",
+                "icon": "help_outline",
+                "action": {
+                  "fn": "addRow",
+                  "args": {
+                    "table": "boxes",
+                    "values": {
+                      "kind": "question"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "button",
+                "label": "Link",
+                "icon": "arrow_forward",
+                "action": {
+                  "fn": "addRow",
+                  "args": {
+                    "table": "links"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "sketch": {
+      "title": "Freehand sketch",
+      "body": {
+        "type": "draw",
+        "table": "drawings",
+        "strokesColumn": "strokes",
+        "titleColumn": "title"
+      }
+    },
+    "talk": {
+      "title": "Discussion",
+      "body": {
+        "type": "column",
+        "children": [
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "Running notes about the design — both sides write here. Claude replies by writing rows with author = claude."
+          },
+          {
+            "type": "cards",
+            "table": "notes",
+            "title": "title",
+            "subtitle": "body",
+            "search": true,
+            "searchColumns": ["title", "body"],
+            "tags": [
+              {
+                "column": "author"
+              }
+            ],
+            "action": {
+              "fn": "editRow"
+            }
+          },
+          {
+            "type": "button",
+            "label": "New note",
+            "icon": "add",
+            "action": {
+              "fn": "addRow",
+              "args": {
+                "table": "notes",
+                "values": {
+                  "author": "you"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "data": {
+      "title": "Raw data",
+      "body": {
+        "type": "column",
+        "children": [
+          {
+            "type": "text",
+            "value": "Boxes",
+            "style": "subtitle"
+          },
+          {
+            "type": "table",
+            "table": "boxes",
+            "columns": ["label", "kind", "note"],
+            "height": 260,
+            "action": {
+              "fn": "editRow"
+            }
+          },
+          {
+            "type": "divider"
+          },
+          {
+            "type": "text",
+            "value": "Links",
+            "style": "subtitle"
+          },
+          {
+            "type": "table",
+            "table": "links",
+            "columns": ["from", "to", "label"],
+            "height": 200,
+            "action": {
+              "fn": "editRow"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

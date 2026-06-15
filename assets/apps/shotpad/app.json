@@ -1,0 +1,11 @@
+{
+  "id": "shotpad",
+  "name": "Shotpad",
+  "icon": "image",
+  "color": "#0D9488",
+  "store": {
+    "type": "sqflite",
+    "namespace": "isan_shotpad"
+  },
+  "seedVersion": "2026-06-12.1"
+}

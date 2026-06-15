@@ -1,0 +1,51 @@
+{
+  "pages": [
+    {
+      "id": "pg_welcome",
+      "title": "Welcome",
+      "order": 1,
+      "pinned": true,
+      "updatedAt": "2026-06-13",
+      "body": "# Welcome to Docs\n\nThis is a **rich-text** notebook. Every page in the tree on the left is a full document — type below, use the toolbar for **bold**, *italic*, headings, lists and links, then tap the eye to preview.\n\nPages nest as deep as you like: a page can hold child pages (tabs → sub-tabs → sub-sub-tabs), so you can organise anything from a quick note to a whole handbook.\n\n## Try it\n\n- Tap **New page** to add a top-level page\n- Open a page and tap the **+** to give it a child page\n- Drag-hold a page to re-nest it under another\n"
+    },
+    {
+      "id": "pg_getting_started",
+      "title": "Getting started",
+      "parentId": "pg_welcome",
+      "order": 1,
+      "updatedAt": "2026-06-13",
+      "body": "## Getting started\n\n1. Pages live in a **tree** — the page you are reading is a child of *Welcome*.\n2. Each page stores its own rich-text body, independent of its parent.\n3. Attach files or images to any page from the editor's **Attachments** field.\n"
+    },
+    {
+      "id": "pg_formatting",
+      "title": "Formatting",
+      "parentId": "pg_welcome",
+      "order": 2,
+      "updatedAt": "2026-06-13",
+      "body": "## Formatting\n\nThe editor speaks Markdown:\n\n- **bold** with `**double asterisks**`\n- *italic* with `*single asterisks*`\n- `## Heading` for a section heading\n- `- item` for a bullet list\n- `[label](https://example.com)` for a link\n\nThis page itself has a child — open **Checklists** below it to see sub-sub-tab nesting.\n"
+    },
+    {
+      "id": "pg_checklists",
+      "title": "Checklists",
+      "parentId": "pg_formatting",
+      "order": 1,
+      "updatedAt": "2026-06-13",
+      "body": "### Checklists\n\nYou can keep checklists as a Markdown list today:\n\n- [ ] Draft the outline\n- [ ] Write the first section\n- [x] Set up the page tree\n\n> Tickable in-doc checkboxes are a planned engine upgrade; for now the boxes render as text you edit by hand.\n"
+    },
+    {
+      "id": "pg_project",
+      "title": "My Project",
+      "order": 2,
+      "updatedAt": "2026-06-13",
+      "body": "# My Project\n\nA second top-level page, to show that the tree holds several independent documents side by side. Add your own children under here.\n"
+    },
+    {
+      "id": "pg_project_notes",
+      "title": "Notes",
+      "parentId": "pg_project",
+      "order": 1,
+      "updatedAt": "2026-06-13",
+      "body": "## Notes\n\nFree-form notes for the project.\n"
+    }
+  ]
+}

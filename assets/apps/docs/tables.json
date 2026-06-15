@@ -1,0 +1,10 @@
+{
+  "tables": [
+    {
+      "name": "pages",
+      "label": "Pages",
+      "icon": "menu_book",
+      "description": "A self-nesting tree of document pages. A page may have a parent page, so pages form tabs, sub-tabs, and sub-sub-tabs to any depth. Each page is a full rich-text document and can carry attachments."
+    }
+  ]
+}

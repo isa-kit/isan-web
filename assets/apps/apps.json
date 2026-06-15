@@ -1,0 +1,29 @@
+{
+  "apps": [
+    "studio",
+    "codev",
+    "taskly",
+    "fridge_inventory",
+    "bikeshare",
+    "diagram",
+    "schema_map",
+    "cooking",
+    "notes",
+    "docs",
+    "arch_map",
+    "ri_map",
+    "neujour",
+    "events_app",
+    "dating",
+    "sketchpad",
+    "dispatch",
+    "crypto",
+    "cityplan",
+    "design",
+    "games",
+    "shotpad",
+    "budget",
+    "taz_delta",
+    "suite"
+  ]
+}

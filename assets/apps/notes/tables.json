@@ -1,0 +1,10 @@
+{
+  "tables": [
+    {
+      "name": "notes",
+      "label": "Notes",
+      "icon": "sticky_note",
+      "description": "Free-form notes. Each note has a title, a body, an optional date, and a pinned flag."
+    }
+  ]
+}

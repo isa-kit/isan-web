@@ -1,0 +1,11 @@
+{
+  "id": "budget",
+  "name": "Budget",
+  "icon": "savings",
+  "color": "#15803D",
+  "store": {
+    "type": "sqflite",
+    "namespace": "isan_budget"
+  },
+  "seedVersion": "2026-06-13.1"
+}

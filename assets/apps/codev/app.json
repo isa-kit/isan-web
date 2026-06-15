@@ -1,0 +1,10 @@
+{
+  "id": "codev",
+  "name": "Codev",
+  "icon": "handshake",
+  "store": {
+    "type": "sqflite",
+    "namespace": "isan_codev"
+  },
+  "seedVersion": "2026-06-09.2"
+}

@@ -1,0 +1,25 @@
+{
+  "boxes": [
+    { "name": "label", "type": "text", "label": "Label", "required": true },
+    { "name": "kind", "type": "text", "label": "Kind", "description": "idea · screen · data · engine · question · answer" },
+    { "name": "note", "type": "text", "label": "Note", "description": "Detail / intent behind this box — Claude reads this." },
+    { "name": "x", "type": "number", "label": "X" },
+    { "name": "y", "type": "number", "label": "Y" },
+    { "name": "w", "type": "number", "label": "Width" },
+    { "name": "h", "type": "number", "label": "Height" }
+  ],
+  "links": [
+    { "name": "from", "type": "ref", "label": "From", "refTable": "boxes" },
+    { "name": "to", "type": "ref", "label": "To", "refTable": "boxes" },
+    { "name": "label", "type": "text", "label": "Relationship" }
+  ],
+  "notes": [
+    { "name": "title", "type": "text", "label": "Topic", "required": true },
+    { "name": "body", "type": "text", "label": "Note" },
+    { "name": "author", "type": "text", "label": "Author", "description": "you or claude" }
+  ],
+  "drawings": [
+    { "name": "title", "type": "text", "label": "Title" },
+    { "name": "strokes", "type": "text", "label": "Strokes (vector)" }
+  ]
+}

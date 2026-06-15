@@ -1,0 +1,10 @@
+{
+  "id": "cooking",
+  "name": "Cooking",
+  "icon": "restaurant",
+  "store": {
+    "type": "sqflite",
+    "namespace": "isan_cooking"
+  },
+  "seedVersion": "2026-06-05.2"
+}

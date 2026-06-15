@@ -1,0 +1,10 @@
+{
+  "tables": [
+    {
+      "name": "messages",
+      "label": "Messages",
+      "icon": "forum",
+      "description": "A thread between you and Claude (running on the laptop). You compose toClaude messages; Claude replies as fromClaude."
+    }
+  ]
+}

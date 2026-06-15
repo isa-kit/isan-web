@@ -1,0 +1,6 @@
+{
+  "tables": [
+    { "name": "nodes", "label": "Nodes", "icon": "account_tree", "description": "Diagram nodes. Each node has a label and an x/y position on the canvas." },
+    { "name": "edges", "label": "Edges", "icon": "list", "description": "Directed edges between nodes, referencing a from-node and a to-node." }
+  ]
+}

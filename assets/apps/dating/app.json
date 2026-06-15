@@ -1,0 +1,10 @@
+{
+  "id": "dating",
+  "name": "Dating (demo)",
+  "icon": "favorite",
+  "store": {
+    "type": "sqflite",
+    "namespace": "isan_dating"
+  },
+  "seedVersion": "2026-06-05.2"
+}

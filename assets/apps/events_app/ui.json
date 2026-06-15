@@ -1,0 +1,278 @@
+{
+  "app": {
+    "title": "Events",
+    "primaryColor": "#00ACC1",
+    "theme": "watercolor"
+  },
+  "nav": [
+    {
+      "id": "upcoming",
+      "label": "Browse",
+      "icon": "list",
+      "screen": "upcoming"
+    },
+    {
+      "id": "going",
+      "label": "Going",
+      "icon": "check_circle",
+      "screen": "going"
+    },
+    {
+      "id": "calendar",
+      "label": "Calendar",
+      "icon": "calendar_today",
+      "screen": "calendar"
+    },
+    {
+      "id": "map",
+      "label": "Map",
+      "icon": "map",
+      "screen": "map"
+    }
+  ],
+  "screens": {
+    "upcoming": {
+      "title": "Browse events",
+      "body": {
+        "type": "column",
+        "children": [
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "What's happening nearby. Filter by type, tap a card to see details, or open it to RSVP."
+          },
+          {
+            "type": "button",
+            "label": "New event",
+            "icon": "add",
+            "action": {
+              "fn": "addRow",
+              "args": {
+                "table": "events",
+                "values": {
+                  "going": false
+                }
+              }
+            }
+          },
+          {
+            "type": "row",
+            "wrap": true,
+            "children": [
+              {
+                "type": "button",
+                "label": "Music",
+                "action": {
+                  "fn": "setFilter",
+                  "args": {
+                    "table": "events",
+                    "column": "tags",
+                    "value": "etag_music"
+                  }
+                }
+              },
+              {
+                "type": "button",
+                "label": "Food",
+                "action": {
+                  "fn": "setFilter",
+                  "args": {
+                    "table": "events",
+                    "column": "tags",
+                    "value": "etag_food"
+                  }
+                }
+              },
+              {
+                "type": "button",
+                "label": "Tech",
+                "action": {
+                  "fn": "setFilter",
+                  "args": {
+                    "table": "events",
+                    "column": "tags",
+                    "value": "etag_tech"
+                  }
+                }
+              },
+              {
+                "type": "button",
+                "label": "All",
+                "action": {
+                  "fn": "setFilter",
+                  "args": {
+                    "table": "events",
+                    "column": "tags",
+                    "value": ""
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "cards",
+            "table": "events",
+            "groupByOptions": [
+              {
+                "label": "Type",
+                "column": "tags"
+              },
+              {
+                "label": "Going",
+                "column": "going"
+              }
+            ],
+            "groupBy": "tags",
+            "sort": {
+              "column": "start",
+              "dir": "asc"
+            },
+            "title": "title",
+            "subtitle": "location",
+            "tags": [
+              {
+                "column": "start"
+              },
+              {
+                "column": "going",
+                "colors": {
+                  "true": "green",
+                  "false": "gray"
+                }
+              }
+            ],
+            "expandable": true,
+            "expandFields": [
+              {
+                "column": "start",
+                "label": "Start"
+              },
+              {
+                "column": "location",
+                "label": "Location"
+              },
+              {
+                "column": "going",
+                "label": "Going"
+              },
+              {
+                "column": "tags",
+                "label": "Tags"
+              },
+              {
+                "column": "notes",
+                "label": "Notes"
+              }
+            ],
+            "open": "Open / RSVP",
+            "action": {
+              "fn": "editRow"
+            }
+          }
+        ]
+      }
+    },
+    "going": {
+      "title": "You're going",
+      "body": {
+        "type": "column",
+        "children": [
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "Events you've RSVP'd yes to, soonest first. Open one to update your plans."
+          },
+          {
+            "type": "cards",
+            "table": "events",
+            "filter": {
+              "column": "going",
+              "value": "true"
+            },
+            "sort": {
+              "column": "start",
+              "dir": "asc"
+            },
+            "title": "title",
+            "subtitle": "location",
+            "tags": [
+              {
+                "column": "start"
+              },
+              {
+                "column": "tags"
+              }
+            ],
+            "expandable": true,
+            "expandFields": [
+              {
+                "column": "start",
+                "label": "Start"
+              },
+              {
+                "column": "location",
+                "label": "Location"
+              },
+              {
+                "column": "notes",
+                "label": "Notes"
+              }
+            ],
+            "open": "Open",
+            "action": {
+              "fn": "editRow"
+            }
+          }
+        ]
+      }
+    },
+    "calendar": {
+      "title": "Calendar",
+      "body": {
+        "type": "column",
+        "children": [
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "Events laid out by date. Tap a day to open that event."
+          },
+          {
+            "type": "calendar",
+            "table": "events",
+            "titleColumn": "title",
+            "dateColumns": [
+              "start"
+            ],
+            "action": {
+              "fn": "editRow"
+            }
+          }
+        ]
+      }
+    },
+    "map": {
+      "title": "Event map",
+      "body": {
+        "type": "column",
+        "children": [
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "Where each event is. Tap a pin or a list item to open the event."
+          },
+          {
+            "type": "map",
+            "table": "events",
+            "latColumn": "lat",
+            "lonColumn": "lon",
+            "labelColumn": "title",
+            "height": 520,
+            "action": {
+              "fn": "editRow"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

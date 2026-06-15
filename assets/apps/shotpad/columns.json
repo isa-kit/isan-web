@@ -1,0 +1,19 @@
+{
+  "shots": [
+    { "name": "title", "type": "text", "label": "Title" },
+    {
+      "name": "image",
+      "type": "text",
+      "label": "Image (base64 PNG)",
+      "rules": { "hidden": true }
+    },
+    {
+      "name": "marks",
+      "type": "text",
+      "label": "Marks (ink/text/patches)",
+      "rules": { "hidden": true }
+    },
+    { "name": "createdAt", "type": "text", "label": "Created" },
+    { "name": "updatedAt", "type": "text", "label": "Updated" }
+  ]
+}

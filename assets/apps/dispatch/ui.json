@@ -1,0 +1,152 @@
+{
+  "app": {
+    "title": "Dispatch",
+    "primaryColor": "#0F766E",
+    "theme": "contrast"
+  },
+  "nav": [
+    {
+      "id": "thread",
+      "label": "Thread",
+      "icon": "forum",
+      "screen": "thread"
+    },
+    {
+      "id": "howto",
+      "label": "How",
+      "icon": "help_outline",
+      "screen": "howto"
+    }
+  ],
+  "screens": {
+    "thread": {
+      "title": "Dispatch",
+      "body": {
+        "type": "column",
+        "children": [
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "Your message thread with Claude on the laptop. Compose, export to send, apply replies."
+          },
+          {
+            "type": "row",
+            "wrap": true,
+            "children": [
+              {
+                "type": "button",
+                "label": "To Claude",
+                "icon": "add",
+                "action": {
+                  "fn": "addRow",
+                  "args": {
+                    "table": "messages",
+                    "values": {
+                      "direction": "toClaude",
+                      "status": "draft"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "button",
+                "label": "Export for Claude",
+                "icon": "upload",
+                "action": {
+                  "fn": "exportData",
+                  "args": {
+                    "format": "json",
+                    "pretty": true
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "cards",
+            "table": "messages",
+            "search": true,
+            "filterable": true,
+            "sort": {
+              "column": "createdAt",
+              "dir": "desc"
+            },
+            "title": "topic",
+            "subtitle": "body",
+            "tags": [
+              {
+                "column": "direction",
+                "colors": {
+                  "toClaude": "blue",
+                  "fromClaude": "green"
+                }
+              },
+              {
+                "column": "status",
+                "colors": {
+                  "draft": "gray",
+                  "sent": "amber",
+                  "applied": "teal"
+                }
+              }
+            ],
+            "expandable": true,
+            "expandFields": [
+              {
+                "column": "body",
+                "label": "Message"
+              },
+              {
+                "column": "direction",
+                "label": "Direction"
+              },
+              {
+                "column": "status",
+                "label": "Status"
+              },
+              {
+                "column": "createdAt",
+                "label": "Created"
+              }
+            ],
+            "open": "Open / edit",
+            "action": {
+              "fn": "editRow"
+            }
+          }
+        ]
+      }
+    },
+    "howto": {
+      "title": "How dispatch works",
+      "body": {
+        "type": "column",
+        "children": [
+          {
+            "type": "text",
+            "style": "title",
+            "value": "Sending to Claude"
+          },
+          {
+            "type": "text",
+            "value": "1. Tap '+ To Claude' and write your status or question.\n2. Tap 'Export for Claude' — it shows the thread as copyable JSON. Paste it into the Claude chat, OR (offline phone) let the local mirror write it and pull it to the laptop with scripts/pull-dev-data.sh.\n3. Claude reads the thread in this conversation."
+          },
+          {
+            "type": "text",
+            "style": "title",
+            "value": "Getting replies back"
+          },
+          {
+            "type": "text",
+            "value": "Claude replies by adding 'fromClaude' messages to the thread bundle. Bring it back with Data → Apply update (paste) or Apply update (from file). Per-field merge keeps both your messages and Claude's."
+          },
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "Note: this reaches THIS Claude conversation only because you carry the text into it (paste, or a file the laptop reads). The phone never talks to Claude directly."
+          }
+        ]
+      }
+    }
+  }
+}

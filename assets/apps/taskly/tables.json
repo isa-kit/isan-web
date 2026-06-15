@@ -1,0 +1,7 @@
+{
+  "tables": [
+    { "name": "tasks", "label": "Tasks", "icon": "check_circle", "description": "Nested units of work. A task may have a parent task, forming a tree." },
+    { "name": "notes", "label": "Notes", "icon": "sticky_note", "description": "Free-form notes. Each note has a title, a body, and an optional date and tags." },
+    { "name": "profiles", "label": "Profiles", "icon": "star", "description": "Contexts a task can belong to (work, personal, …). A task may have several." }
+  ]
+}

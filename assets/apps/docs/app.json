@@ -1,0 +1,11 @@
+{
+  "id": "docs",
+  "name": "Docs",
+  "icon": "menu_book",
+  "color": "#00897B",
+  "store": {
+    "type": "sqflite",
+    "namespace": "isan_docs"
+  },
+  "seedVersion": "2026-06-13.1"
+}

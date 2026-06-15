@@ -1,0 +1,36 @@
+{
+  "messages": [
+    {
+      "id": "m_welcome",
+      "direction": "fromClaude",
+      "topic": "How dispatch works",
+      "body": "Compose a message with '+ To Claude', then tap 'Export for Claude' and paste it into the Claude chat (or let the local mirror + adb pull carry it to the laptop). Claude reads the thread and replies by adding fromClaude messages; apply them with Data → Apply update (paste/file). Per-field merge keeps both sides' messages.",
+      "status": "applied",
+      "createdAt": "2026-06-06"
+    },
+    {
+      "id": "rm_sync",
+      "direction": "fromClaude",
+      "topic": "Roadmap synced to your task apps",
+      "body": "I've put your full roadmap into Taskly (as a nested task tree) and Workboard (as milestones + tasks + a decisions queue + worklog). Open each and tell me which design fits you best. Dispatch (this view) is your inbox to send me tasks - try the two drafts below: edit and tap 'Export for Claude'.",
+      "status": "sent",
+      "createdAt": "2026-06-15"
+    },
+    {
+      "id": "rm_draft1",
+      "direction": "toClaude",
+      "topic": "Store & money decisions",
+      "body": "Walk me through the store and pricing decisions one at a time, simply, with a recommendation for each.",
+      "status": "draft",
+      "createdAt": "2026-06-15"
+    },
+    {
+      "id": "rm_draft2",
+      "direction": "toClaude",
+      "topic": "Finish the desktop bridge",
+      "body": "Rebuild the Mac app so it reads from the new workspace and finish the M2 cutover.",
+      "status": "draft",
+      "createdAt": "2026-06-15"
+    }
+  ]
+}

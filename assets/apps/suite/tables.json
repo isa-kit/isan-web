@@ -1,0 +1,34 @@
+{
+  "tables": [
+    {
+      "name": "tools",
+      "label": "Suite tools",
+      "icon": "grid_view",
+      "description": "One row per tool this suite offers. Home renders these as cards; the screen column names the screen the card opens, so the hub consolidates Sheets, Docs and Notes into one applet — adding a tool = adding a row + a screen."
+    },
+    {
+      "name": "sheet_budget",
+      "label": "Budget sheet",
+      "icon": "table_chart",
+      "description": "A spreadsheet: a free grid of rows and columns. Edit cells inline; add rows or new columns straight from the grid. One of the workbook's sheets."
+    },
+    {
+      "name": "sheet_roster",
+      "label": "Roster sheet",
+      "icon": "table_chart",
+      "description": "A second spreadsheet in the same workbook. The Sheets tab's table switcher flips between this and the Budget sheet."
+    },
+    {
+      "name": "pages",
+      "label": "Pages",
+      "icon": "menu_book",
+      "description": "A self-nesting tree of document pages. A page may have a parent page, so pages form tabs, sub-tabs and sub-sub-tabs to any depth. Each page is a full rich-text document and can carry attachments."
+    },
+    {
+      "name": "notes",
+      "label": "Notes",
+      "icon": "sticky_note",
+      "description": "Free-form notes. Each note has a title, a body, an optional date and a pinned flag. Pinned notes stay on top."
+    }
+  ]
+}

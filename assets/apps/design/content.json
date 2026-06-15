@@ -1,0 +1,53 @@
+{
+  "boxes": [
+    {
+      "id": "b_draw",
+      "label": "1 · You draw",
+      "kind": "idea",
+      "note": "Add boxes, drag them around, resize from the corner, tap to write a note explaining the idea. Link boxes with arrows.",
+      "x": 60,
+      "y": 60,
+      "w": 200
+    },
+    {
+      "id": "b_mirror",
+      "label": "2 · Mirror writes JSON",
+      "kind": "data",
+      "note": "With Sync settings → Local file mirror on (path = this repo's isan/apps), every box lands in isan/apps/design/data/boxes.json within ~1s.",
+      "x": 340,
+      "y": 60,
+      "w": 200
+    },
+    {
+      "id": "b_claude",
+      "label": "3 · Claude reads & replies",
+      "kind": "answer",
+      "note": "Tell Claude 'look at the design board'. Claude reads boxes.json and replies by writing inbox.json — answer boxes (coral) and discussion notes appear in the app.",
+      "x": 620,
+      "y": 60,
+      "w": 220
+    },
+    {
+      "id": "b_question",
+      "label": "Example: amber = question",
+      "kind": "question",
+      "note": "Use the 'Question for Claude' button for things you want Claude to answer or design. Put the actual question in this note field.",
+      "x": 200,
+      "y": 260,
+      "w": 220
+    }
+  ],
+  "links": [
+    { "id": "l1", "from": "b_draw", "to": "b_mirror", "label": "~1s" },
+    { "id": "l2", "from": "b_mirror", "to": "b_claude", "label": "read + inbox.json" }
+  ],
+  "notes": [
+    {
+      "id": "n_howto",
+      "title": "How this board works",
+      "body": "Board tab: boxes + arrows, color-coded by kind. Sketch tab: freehand drawing for anything boxy boxes can't say. This tab: running discussion. Everything is data, so it mirrors to disk (Claude reads it) and Claude writes back via inbox.json. JSON-only — no rebuild needed for changes to this applet.",
+      "author": "claude"
+    }
+  ],
+  "drawings": []
+}

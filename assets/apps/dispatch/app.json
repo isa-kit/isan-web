@@ -1,0 +1,10 @@
+{
+  "id": "dispatch",
+  "name": "Dispatch",
+  "icon": "forum",
+  "store": {
+    "type": "sqflite",
+    "namespace": "isan_dispatch"
+  },
+  "seedVersion": "2026-06-15.roadmap"
+}

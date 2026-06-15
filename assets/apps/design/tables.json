@@ -1,0 +1,28 @@
+{
+  "tables": [
+    {
+      "name": "boxes",
+      "label": "Boxes",
+      "icon": "crop_square",
+      "description": "Design elements: drag to place, resize from the corner, tap to edit label + note."
+    },
+    {
+      "name": "links",
+      "label": "Links",
+      "icon": "link",
+      "description": "Arrows between boxes (flow, dependency, 'leads to')."
+    },
+    {
+      "name": "notes",
+      "label": "Discussion",
+      "icon": "forum",
+      "description": "Running design discussion — you and Claude both write here."
+    },
+    {
+      "name": "drawings",
+      "label": "Sketches",
+      "icon": "draw",
+      "description": "Freehand vector sketches for ideas that don't fit boxes."
+    }
+  ]
+}

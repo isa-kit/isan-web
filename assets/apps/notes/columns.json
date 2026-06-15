@@ -1,0 +1,27 @@
+{
+  "notes": [
+    {
+      "name": "title",
+      "type": "text",
+      "label": "Title",
+      "required": true
+    },
+    {
+      "name": "body",
+      "type": "text",
+      "label": "Body"
+    },
+    {
+      "name": "date",
+      "type": "date",
+      "label": "Date",
+      "default": "today"
+    },
+    {
+      "name": "pinned",
+      "type": "boolean",
+      "label": "Pinned",
+      "default": false
+    }
+  ]
+}

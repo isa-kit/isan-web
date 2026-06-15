@@ -1,0 +1,10 @@
+{
+  "id": "events_app",
+  "name": "Events",
+  "icon": "event",
+  "store": {
+    "type": "sqflite",
+    "namespace": "isan_events_app"
+  },
+  "seedVersion": "2026-06-05.2"
+}

@@ -1,0 +1,26 @@
+{
+  "tools": [
+    { "id": "t_sheets", "name": "Sheets", "tagline": "Spreadsheets — a free grid of cells you edit inline.", "icon": "table_chart", "screen": "sheets", "order": 1 },
+    { "id": "t_docs", "name": "Docs", "tagline": "Rich-text documents in a nesting page tree.", "icon": "menu_book", "screen": "docs", "order": 2 },
+    { "id": "t_notes", "name": "Notes", "tagline": "Quick free-form notes; pin the ones that matter.", "icon": "sticky_note", "screen": "notes", "order": 3 }
+  ],
+  "sheet_budget": [
+    { "id": "b1", "category": "Rent", "planned": 1200, "actual": 1200, "notes": "Fixed" },
+    { "id": "b2", "category": "Groceries", "planned": 400, "actual": 372, "notes": "" },
+    { "id": "b3", "category": "Transit", "planned": 90, "actual": 84, "notes": "Monthly pass" },
+    { "id": "b4", "category": "Savings", "planned": 500, "actual": 500, "notes": "Auto-transfer" }
+  ],
+  "sheet_roster": [
+    { "id": "r1", "name": "Ada", "role": "Lead", "hours": 38, "rate": 65 },
+    { "id": "r2", "name": "Bo", "role": "Design", "hours": 32, "rate": 55 },
+    { "id": "r3", "name": "Cy", "role": "Build", "hours": 40, "rate": 60 }
+  ],
+  "pages": [
+    { "id": "p1", "title": "Welcome", "body": "This is a rich-text document. Open it to edit; use the + on a page to add a child page (a sub-tab).", "pinned": true, "order": 1, "updatedAt": "2026-06-14" },
+    { "id": "p2", "title": "How sheets work", "parentId": "p1", "body": "The Sheets tab is a workbook. The switcher at the top flips between sheets; edit a cell by tapping it, and add rows or new columns straight from the grid.", "order": 2, "updatedAt": "2026-06-14" }
+  ],
+  "notes": [
+    { "id": "n1", "title": "Suite is one applet", "body": "Sheets, Docs and Notes all live in this single suite — one store, one launcher tile.", "date": "2026-06-14", "pinned": true },
+    { "id": "n2", "title": "Try it", "body": "Tap a tool on Home, or use the bottom tabs to jump straight in.", "date": "2026-06-14", "pinned": false }
+  ]
+}

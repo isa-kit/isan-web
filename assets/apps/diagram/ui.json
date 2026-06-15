@@ -1,0 +1,171 @@
+{
+  "app": {
+    "title": "Diagram",
+    "primaryColor": "#42A5F5",
+    "theme": "clean"
+  },
+  "nav": [
+    {
+      "id": "canvas",
+      "label": "Canvas",
+      "icon": "account_tree",
+      "screen": "canvas"
+    },
+    {
+      "id": "data",
+      "label": "Data",
+      "icon": "table_rows",
+      "screen": "data"
+    }
+  ],
+  "screens": {
+    "canvas": {
+      "title": "Flowchart",
+      "body": {
+        "type": "column",
+        "children": [
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "A free-form flowchart. Drag a node to move it; tap a node to rename it. Drag a node's link handle onto another node to connect them. Use the buttons below to add a node or edge."
+          },
+          {
+            "type": "canvas",
+            "nodesTable": "nodes",
+            "edgesTable": "edges",
+            "labelColumn": "label",
+            "xColumn": "x",
+            "yColumn": "y",
+            "fromColumn": "from",
+            "toColumn": "to",
+            "colorColumn": "kind",
+            "colors": {
+              "start": "green",
+              "step": "blue",
+              "decision": "amber",
+              "end": "coral"
+            },
+            "height": 520,
+            "action": {
+              "fn": "editRow"
+            }
+          },
+          {
+            "type": "row",
+            "wrap": true,
+            "children": [
+              {
+                "type": "button",
+                "label": "New node",
+                "icon": "add",
+                "action": {
+                  "fn": "addRow",
+                  "args": {
+                    "table": "nodes",
+                    "values": {
+                      "kind": "step"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "button",
+                "label": "New edge",
+                "icon": "add",
+                "action": {
+                  "fn": "addRow",
+                  "args": {
+                    "table": "edges"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "data": {
+      "title": "Nodes & edges",
+      "body": {
+        "type": "column",
+        "children": [
+          {
+            "type": "text",
+            "value": "Nodes",
+            "style": "subtitle"
+          },
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "Every shape on the canvas. Tap a row to edit its label, kind, or position."
+          },
+          {
+            "type": "table",
+            "table": "nodes",
+            "columns": [
+              "label",
+              "kind",
+              "x",
+              "y"
+            ],
+            "height": 240,
+            "action": {
+              "fn": "editRow"
+            }
+          },
+          {
+            "type": "button",
+            "label": "New node",
+            "icon": "add",
+            "action": {
+              "fn": "addRow",
+              "args": {
+                "table": "nodes",
+                "values": {
+                  "kind": "step"
+                }
+              }
+            }
+          },
+          {
+            "type": "divider"
+          },
+          {
+            "type": "text",
+            "value": "Edges",
+            "style": "subtitle"
+          },
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "Connections between nodes. Tap a row to change its endpoints or label."
+          },
+          {
+            "type": "table",
+            "table": "edges",
+            "columns": [
+              "from",
+              "to",
+              "label"
+            ],
+            "height": 240,
+            "action": {
+              "fn": "editRow"
+            }
+          },
+          {
+            "type": "button",
+            "label": "New edge",
+            "icon": "add",
+            "action": {
+              "fn": "addRow",
+              "args": {
+                "table": "edges"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

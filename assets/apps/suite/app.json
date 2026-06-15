@@ -1,0 +1,11 @@
+{
+  "id": "suite",
+  "name": "Suite",
+  "icon": "grid_view",
+  "color": "#3F51B5",
+  "store": {
+    "type": "sqflite",
+    "namespace": "isan_suite"
+  },
+  "seedVersion": "2026-06-14.1"
+}

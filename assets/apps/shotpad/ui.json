@@ -1,0 +1,58 @@
+{
+  "app": {
+    "title": "Shotpad",
+    "primaryColor": "#0D9488"
+  },
+  "nav": [
+    {
+      "id": "pad",
+      "label": "Pad",
+      "icon": "edit",
+      "screen": "pad"
+    },
+    {
+      "id": "gallery",
+      "label": "Gallery",
+      "icon": "grid_on",
+      "screen": "gallery"
+    }
+  ],
+  "screens": {
+    "pad": {
+      "title": "Shotpad",
+      "body": {
+        "type": "annotate",
+        "table": "shots",
+        "imageColumn": "image",
+        "marksColumn": "marks",
+        "titleColumn": "title"
+      }
+    },
+    "gallery": {
+      "title": "Gallery",
+      "body": {
+        "type": "column",
+        "children": [
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "All saved shots. Open one on the Pad tab to keep annotating; edit here to rename or delete."
+          },
+          {
+            "type": "cards",
+            "table": "shots",
+            "search": true,
+            "title": "title",
+            "subtitle": "updatedAt",
+            "expandFields": [
+              { "column": "createdAt", "label": "Created" },
+              { "column": "updatedAt", "label": "Updated" }
+            ],
+            "open": "Rename",
+            "action": { "fn": "editRow" }
+          }
+        ]
+      }
+    }
+  }
+}
