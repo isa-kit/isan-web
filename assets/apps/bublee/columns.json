@@ -1,0 +1,36 @@
+{
+  "bubbles": [
+    { "name": "id", "type": "text" },
+    { "name": "label", "type": "text", "label": "Idea" },
+    { "name": "kind", "type": "enum", "label": "Kind", "options": ["idea", "raw", "made", "final"], "default": "idea" },
+    { "name": "qty", "type": "text", "label": "Amount / status" },
+    { "name": "pos", "type": "text", "label": "Position", "hidden": true },
+    { "name": "parent", "type": "text", "label": "Nested in", "hidden": true },
+    { "name": "color", "type": "text", "label": "Colour", "hidden": true },
+    { "name": "outlineColor", "type": "text", "label": "Outline colour", "hidden": true },
+    { "name": "outlineWidth", "type": "number", "label": "Outline width", "hidden": true },
+    { "name": "shape", "type": "text", "label": "Shape", "hidden": true },
+    { "name": "rounded", "type": "text", "label": "Rounded", "hidden": true },
+    { "name": "aspect", "type": "number", "label": "Stretch", "hidden": true },
+    { "name": "rotation", "type": "number", "label": "Rotation", "hidden": true },
+    { "name": "customShape", "type": "text", "label": "Custom shape", "hidden": true },
+    { "name": "size", "type": "number", "label": "Size", "hidden": true },
+    { "name": "calories", "type": "number", "label": "Calories" },
+    { "name": "attrs", "type": "text", "label": "Attributes (JSON)", "hidden": true },
+    { "name": "board", "type": "text", "label": "Board", "hidden": true }
+  ],
+  "links": [
+    { "name": "id", "type": "text" },
+    { "name": "from", "type": "text", "hidden": true },
+    { "name": "to", "type": "text", "hidden": true },
+    { "name": "type", "type": "text", "label": "Type", "hidden": true },
+    { "name": "board", "type": "text", "label": "Board", "hidden": true }
+  ],
+  "boards": [
+    { "name": "id", "type": "text" },
+    { "name": "name", "type": "text", "label": "Board" },
+    { "name": "icon", "type": "text", "label": "Icon" },
+    { "name": "color", "type": "text", "label": "Colour" },
+    { "name": "order", "type": "integer", "label": "Order", "hidden": true }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "tables": [
+    {
+      "name": "agencies",
+      "label": "Data sources",
+      "icon": "dns",
+      "description": "Transit agencies this app reads. Edit a source, point one at your own server, add your own, or switch one off."
+    }
+  ]
+}

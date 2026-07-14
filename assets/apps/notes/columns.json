@@ -1,0 +1,44 @@
+{
+  "notes": [
+    {
+      "name": "title",
+      "type": "text",
+      "label": "Title",
+      "required": true
+    },
+    {
+      "name": "body",
+      "type": "text",
+      "label": "Body"
+    },
+    {
+      "name": "color",
+      "type": "text",
+      "label": "Color",
+      "options": ["amber", "green", "blue", "pink", "purple", "coral"],
+      "default": "amber"
+    },
+    {
+      "name": "date",
+      "type": "date",
+      "label": "Date",
+      "default": "today"
+    },
+    {
+      "name": "pinned",
+      "type": "boolean",
+      "label": "Pinned",
+      "default": false
+    },
+    {
+      "name": "parentId",
+      "type": "text",
+      "label": "Folder"
+    },
+    {
+      "name": "kind",
+      "type": "text",
+      "label": "Kind"
+    }
+  ]
+}

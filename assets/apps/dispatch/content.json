@@ -1,0 +1,177 @@
+{
+  "users": [
+    {
+      "id": "u_you",
+      "name": "You"
+    },
+    {
+      "id": "u_claude",
+      "name": "Claude"
+    }
+  ],
+  "entries": [
+    {
+      "id": "p_roadmap",
+      "type": "group",
+      "title": "Roadmap & decisions",
+      "status": "active",
+      "order": 1,
+      "comment": "Projects and decisions live here. Open one to see its child entries."
+    },
+    {
+      "id": "n_howto",
+      "type": "task",
+      "title": "How dispatch works",
+      "status": "done",
+      "order": 1,
+      "comment": "Every entry is one node: it has a title and a comment, and a TYPE that decides its content — a note, a wireframe, a sheet, a doc, or a sketch (each keeps its own data). Nodes relate through the relations table, so ONE entry can live under many parents.",
+      "createdBy": "u_claude",
+      "prompting": [
+        "u_you"
+      ]
+    },
+    {
+      "id": "n_store",
+      "type": "group",
+      "title": "Store & money decisions",
+      "status": "active",
+      "order": 2,
+      "comment": "Decisions, one at a time, each with a recommendation.",
+      "createdBy": "u_you"
+    },
+    {
+      "id": "n_store_req",
+      "type": "task",
+      "title": "Store & pricing decisions",
+      "status": "active",
+      "order": 1,
+      "comment": "Walk me through store + pricing one at a time, simply, with a recommendation for each.",
+      "createdBy": "u_you",
+      "prompting": [
+        "u_claude"
+      ]
+    },
+    {
+      "id": "n_store_wf",
+      "type": "wireframe",
+      "title": "Pricing screen — wireframe",
+      "status": "active",
+      "order": 2,
+      "createdBy": "u_you"
+    },
+    {
+      "id": "n_bridge",
+      "type": "task",
+      "title": "Finish the desktop bridge",
+      "status": "queued",
+      "order": 3,
+      "comment": "Rebuild the Mac app on the new workspace and finish the M2 cutover.",
+      "createdBy": "u_you"
+    },
+    {
+      "id": "p_inbox",
+      "type": "group",
+      "title": "Inbox",
+      "status": "active",
+      "order": 2,
+      "comment": "A place to drop new entries."
+    },
+    {
+      "id": "l_store_1",
+      "type": "note",
+      "comment": "Recommendation drafted — one decision per card; the store page ships first.",
+      "createdBy": "u_claude",
+      "created": "2026-07-01",
+      "postedAt": "2026-07-01T09:05:00"
+    },
+    {
+      "id": "l_store_2",
+      "type": "note",
+      "comment": "Sounds good — start with pricing, then the store terms.",
+      "createdBy": "u_you",
+      "created": "2026-07-01",
+      "postedAt": "2026-07-01T09:20:00"
+    },
+    {
+      "id": "t_store_wf",
+      "type": "task",
+      "title": "Pricing screen",
+      "status": "active",
+      "createdBy": "u_you",
+      "comment": "The pricing screen design — its wireframe is attached below."
+    }
+  ],
+  "relations": [
+    {
+      "id": "r1",
+      "fromId": "p_roadmap",
+      "toId": "n_howto",
+      "type": "contains",
+      "order": 1
+    },
+    {
+      "id": "r2",
+      "fromId": "p_roadmap",
+      "toId": "n_store",
+      "type": "contains",
+      "order": 2
+    },
+    {
+      "id": "r3",
+      "fromId": "n_store",
+      "toId": "n_store_req",
+      "type": "contains",
+      "order": 1
+    },
+    {
+      "id": "r4",
+      "fromId": "n_store",
+      "toId": "t_store_wf",
+      "type": "contains",
+      "order": 2
+    },
+    {
+      "id": "r5",
+      "fromId": "p_roadmap",
+      "toId": "n_bridge",
+      "type": "contains",
+      "order": 3
+    },
+    {
+      "id": "r6",
+      "fromId": "p_inbox",
+      "toId": "t_store_wf",
+      "type": "contains",
+      "order": 1,
+      "label": "same wireframe, tracked in Inbox too"
+    },
+    {
+      "id": "r7",
+      "fromId": "n_bridge",
+      "toId": "n_howto",
+      "type": "references",
+      "label": "see how entries work"
+    },
+    {
+      "id": "r8",
+      "fromId": "n_store_req",
+      "toId": "l_store_1",
+      "type": "contains",
+      "order": 1
+    },
+    {
+      "id": "r9",
+      "fromId": "n_store_req",
+      "toId": "l_store_2",
+      "type": "contains",
+      "order": 2
+    },
+    {
+      "id": "r10",
+      "fromId": "t_store_wf",
+      "toId": "n_store_wf",
+      "type": "contains",
+      "order": 1
+    }
+  ]
+}

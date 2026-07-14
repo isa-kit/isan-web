@@ -1,0 +1,76 @@
+{
+  "app": {
+    "title": {
+      "en": "Sheets",
+      "fr": "Feuilles",
+      "de": "Tabellen",
+      "es": "Hojas",
+      "it": "Fogli",
+      "sv": "Kalkylblad",
+      "cs": "Tabulky",
+      "el": "Φύλλα",
+      "ko": "시트"
+    },
+    "primaryColor": "#3F51B5",
+    "theme": "warmshift",
+    "languages": ["en", "fr", "de", "es", "it", "sv", "cs", "el", "ko"],
+    "settings": [
+      {
+        "label": "Save Budget as Excel (.xlsx)",
+        "hint": "Export the budget sheet as a real .xlsx workbook",
+        "icon": "download",
+        "action": "exportXlsx",
+        "args": { "table": "sheet_budget" }
+      },
+      {
+        "label": "Save Scores as Excel (.xlsx)",
+        "hint": "Export the scores sheet as a real .xlsx workbook",
+        "icon": "download",
+        "action": "exportXlsx",
+        "args": { "table": "sheet_scores" }
+      }
+    ]
+  },
+  "nav": [
+    {
+      "id": "sheets",
+      "label": {
+        "en": "Sheets",
+        "fr": "Feuilles",
+        "de": "Tabellen",
+        "es": "Hojas",
+        "it": "Fogli",
+        "sv": "Kalkylblad",
+        "cs": "Tabulky",
+        "el": "Φύλλα",
+        "ko": "시트"
+      },
+      "icon": "table_chart",
+      "screen": "sheets"
+    }
+  ],
+  "screens": {
+    "sheets": {
+      "title": {
+        "en": "Sheets",
+        "fr": "Feuilles",
+        "de": "Tabellen",
+        "es": "Hojas",
+        "it": "Fogli",
+        "sv": "Kalkylblad",
+        "cs": "Tabulky",
+        "el": "Φύλλα",
+        "ko": "시트"
+      },
+      "body": {
+        "type": "dataview",
+        "tables": [
+          "sheet_budget",
+          "sheet_scores"
+        ],
+        "sheet": true,
+        "fillPhone": true
+      }
+    }
+  }
+}

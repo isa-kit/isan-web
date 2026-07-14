@@ -1,0 +1,9 @@
+{
+  "tables": [
+    {
+      "name": "events",
+      "label": "Porchfest",
+      "icon": "music_note"
+    }
+  ]
+}

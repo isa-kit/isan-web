@@ -1,0 +1,92 @@
+{
+  "app": {
+    "title": "Notes",
+    "primaryColor": "#3F51B5",
+    "theme": "warmshift"
+  },
+  "nav": [
+    { "id": "edit", "label": "Notes", "icon": "edit_note", "screen": "edit" },
+    { "id": "browse", "label": "Browse", "icon": "sticky_note", "screen": "browse" }
+  ],
+  "screens": {
+    "edit": {
+      "title": "Notes",
+      "body": {
+        "type": "explorer",
+        "railMode": "collapsible",
+        "table": "notes",
+        "nameColumn": "title",
+        "kindColumn": "kind",
+        "parentColumn": "parentId",
+        "title": "Notes",
+        "fileIcon": "note",
+        "newFileLabel": "New note",
+        "newFolderLabel": "New folder",
+        "autoSelectFirst": true,
+        "startBlank": true,
+        "detail": {
+          "type": "notepad",
+          "table": "notes",
+          "column": "body",
+          "titleColumn": "title",
+          "colorColumn": "color",
+          "toolbar": true,
+          "liveFormat": true,
+          "placeholder": "Jot a note… **bold**, # headings and - bullets all work."
+        }
+      }
+    },
+    "browse": {
+      "title": "Browse",
+      "body": {
+        "type": "column",
+        "children": [
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "Your sticky wall — pinned notes first. Tap one to open it, or colour it when you edit."
+          },
+          {
+            "type": "button",
+            "label": "Jot a note",
+            "icon": "note_add",
+            "action": { "fn": "addRow", "args": { "table": "notes" } }
+          },
+          {
+            "type": "cards",
+            "masonry": true,
+            "windowed": false,
+            "colorColumn": "color",
+            "emptyIcon": "note_add",
+            "emptyTitle": "No notes yet",
+            "emptyText": "Create your first note to get started.",
+            "emptyAction": { "fn": "addRow", "args": { "table": "notes" } },
+            "emptyActionLabel": "Jot a note",
+            "emptyActionIcon": "note_add",
+            "table": "notes",
+            "groupBy": "pinned",
+            "groupOrder": ["true", "false"],
+            "sort": { "column": "date", "dir": "desc" },
+            "title": "title",
+            "subtitle": "body",
+            "tags": [
+              { "column": "pinned", "colors": { "true": "amber", "false": "gray" } }
+            ],
+            "swipeActions": [
+              { "label": "Pin / unpin", "icon": "push_pin", "action": { "fn": "toggleField", "args": { "column": "pinned" } } },
+              "edit",
+              "delete"
+            ],
+            "expandable": true,
+            "expandFields": [
+              { "column": "body", "label": "Note" },
+              { "column": "date", "label": "Date" }
+            ],
+            "open": "Edit note",
+            "action": { "fn": "editRow" }
+          }
+        ]
+      }
+    }
+  }
+}

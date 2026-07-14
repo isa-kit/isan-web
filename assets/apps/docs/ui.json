@@ -1,0 +1,67 @@
+{
+  "app": {
+    "title": "Docs",
+    "primaryColor": "#3F51B5",
+    "theme": "warmshift"
+  },
+  "nav": [
+    {
+      "id": "pages",
+      "label": "Documents",
+      "icon": "menu_book",
+      "screen": "pages"
+    }
+  ],
+  "screens": {
+    "pages": {
+      "title": "Documents",
+      "body": {
+        "type": "explorer",
+        "railMode": "collapsible",
+        "table": "pages",
+        "nameColumn": "title",
+        "kindColumn": "kind",
+        "parentColumn": "parentId",
+        "title": "Documents",
+        "fileIcon": "doc",
+        "newFileLabel": "New document",
+        "newFolderLabel": "New folder",
+        "detail": {
+          "type": "pages",
+          "table": "pages",
+          "nameColumn": "title",
+          "parentColumn": "parentId",
+          "orderColumn": "order",
+          "kindColumn": "kind",
+          "pageValue": "page",
+          "pageLabel": "Page",
+          "detail": {
+            "type": "richdoc",
+            "table": "pages",
+            "column": "body"
+          }
+        }
+      }
+    },
+    "solo": {
+      "title": "Document",
+      "body": {
+        "type": "explorer",
+        "table": "pages",
+        "nameColumn": "title",
+        "kindColumn": "kind",
+        "parentColumn": "parentId",
+        "fileIcon": "doc",
+        "newFileLabel": "New document",
+        "railMode": "none",
+        "autoSelectFirst": true,
+        "startBlank": true,
+        "detail": {
+          "type": "richdoc",
+          "table": "pages",
+          "column": "body"
+        }
+      }
+    }
+  }
+}

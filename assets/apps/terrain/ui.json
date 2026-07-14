@@ -1,0 +1,2038 @@
+{
+  "app": {
+    "title": "Models",
+    "primaryColor": "#2E6E5A",
+    "theme": "material",
+    "maxContentWidth": 900
+  },
+  "nav": [
+    {
+      "id": "overview",
+      "label": "Models",
+      "icon": "insights",
+      "screen": "overview"
+    },
+    {
+      "id": "runs",
+      "label": "Runs",
+      "icon": "history",
+      "screen": "runs"
+    },
+    {
+      "id": "outputs",
+      "label": "Outputs",
+      "icon": "hub",
+      "screen": "outputs"
+    },
+    {
+      "id": "catalog",
+      "label": "Registries",
+      "icon": "category",
+      "screen": "catalog"
+    },
+    {
+      "id": "about",
+      "label": "About",
+      "icon": "info",
+      "screen": "about"
+    }
+  ],
+  "screens": {
+    "overview": {
+      "title": "Models",
+      "maxContentWidth": 1160,
+      "body": {
+        "type": "cards",
+        "table": "models",
+        "expandable": false,
+        "title": "name",
+        "subtitle": "summary",
+        "search": true,
+        "groupBy": "kind",
+        "groupOrder": [
+          "foundation",
+          "step",
+          "layer"
+        ],
+        "collapsible": true,
+        "tags": [
+          {
+            "column": "confidence_tier",
+            "colors": {
+              "focused": "green",
+              "exploratory": "amber"
+            }
+          }
+        ],
+        "tableView": false,
+        "action": {
+          "chain": [
+            {
+              "fn": "selectRow"
+            },
+            {
+              "fn": "goto",
+              "args": {
+                "screen": "model"
+              }
+            }
+          ]
+        }
+      },
+      "header": {
+        "type": "row",
+        "children": [
+          {
+            "type": "button",
+            "label": "Atlas",
+            "icon": "public",
+            "action": {
+              "fn": "hostCall",
+              "args": {
+                "name": "openApplet",
+                "appId": "atlas",
+                "title": "Atlas — place analysis"
+              }
+            }
+          },
+          {
+            "type": "button",
+            "label": "Scenarios",
+            "icon": "account_tree",
+            "action": {
+              "fn": "hostCall",
+              "args": {
+                "name": "openApplet",
+                "appId": "scenarios",
+                "title": "Scenarios"
+              }
+            }
+          },
+          {
+            "type": "button",
+            "label": "Reports",
+            "icon": "insights",
+            "action": {
+              "fn": "hostCall",
+              "args": {
+                "name": "openApplet",
+                "appId": "modelreport",
+                "title": "Model reports"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "runs": {
+      "title": "Runs",
+      "body": {
+        "type": "column",
+        "scroll": true,
+        "children": [
+          {
+            "type": "cards",
+            "table": "run_config",
+            "title": "run_label",
+            "subtitle": "last_status",
+            "tags": [
+              {
+                "column": "year",
+                "colors": {
+                  "2010": "gray",
+                  "2019": "teal",
+                  "2030": "purple",
+                  "2040": "amber",
+                  "2050": "coral"
+                }
+              }
+            ],
+            "expandable": false,
+            "swipeActions": [
+              "edit"
+            ],
+            "action": {
+              "fn": "editRow"
+            }
+          },
+          {
+            "type": "list",
+            "table": "run_config",
+            "titleColumn": "run_label",
+            "subtitleColumns": [
+              "last_status"
+            ],
+            "swipeActions": false,
+            "onTap": {
+              "chain": [
+                {
+                  "fn": "setFields",
+                  "args": {
+                    "set": {
+                      "last_run": "now",
+                      "last_status": "→ Recorded below with a full setup snapshot. The live call fired too — nothing extra arriving means the endpoint did not answer (403-locked or offline; see About)."
+                    }
+                  }
+                },
+                {
+                  "fn": "addRow",
+                  "args": {
+                    "table": "runs",
+                    "silentAdd": true,
+                    "values": {
+                      "state": "recorded",
+                      "status": "recorded (server pending)"
+                    }
+                  }
+                },
+                {
+                  "when": {
+                    "field": "year",
+                    "op": "eq",
+                    "value": "2010"
+                  },
+                  "then": {
+                    "fn": "http",
+                    "onError": "continue",
+                    "args": {
+                      "url": "https://167.233.64.97/model/scenario",
+                      "method": "POST",
+                      "body": {
+                        "year": 2010
+                      },
+                      "into": {
+                        "table": "runs",
+                        "path": "summary"
+                      },
+                      "timeoutMs": 120000
+                    }
+                  }
+                },
+                {
+                  "when": {
+                    "field": "year",
+                    "op": "eq",
+                    "value": "2019"
+                  },
+                  "then": {
+                    "fn": "http",
+                    "onError": "continue",
+                    "args": {
+                      "url": "https://167.233.64.97/model/scenario",
+                      "method": "POST",
+                      "body": {
+                        "year": 2019
+                      },
+                      "into": {
+                        "table": "runs",
+                        "path": "summary"
+                      },
+                      "timeoutMs": 120000
+                    }
+                  }
+                },
+                {
+                  "when": {
+                    "field": "year",
+                    "op": "eq",
+                    "value": "2030"
+                  },
+                  "then": {
+                    "fn": "http",
+                    "onError": "continue",
+                    "args": {
+                      "url": "https://167.233.64.97/model/scenario",
+                      "method": "POST",
+                      "body": {
+                        "year": 2030
+                      },
+                      "into": {
+                        "table": "runs",
+                        "path": "summary"
+                      },
+                      "timeoutMs": 120000
+                    }
+                  }
+                },
+                {
+                  "when": {
+                    "field": "year",
+                    "op": "eq",
+                    "value": "2040"
+                  },
+                  "then": {
+                    "fn": "http",
+                    "onError": "continue",
+                    "args": {
+                      "url": "https://167.233.64.97/model/scenario",
+                      "method": "POST",
+                      "body": {
+                        "year": 2040
+                      },
+                      "into": {
+                        "table": "runs",
+                        "path": "summary"
+                      },
+                      "timeoutMs": 120000
+                    }
+                  }
+                },
+                {
+                  "when": {
+                    "field": "year",
+                    "op": "eq",
+                    "value": "2050"
+                  },
+                  "then": {
+                    "fn": "http",
+                    "onError": "continue",
+                    "args": {
+                      "url": "https://167.233.64.97/model/scenario",
+                      "method": "POST",
+                      "body": {
+                        "year": 2050
+                      },
+                      "into": {
+                        "table": "runs",
+                        "path": "summary"
+                      },
+                      "timeoutMs": 120000
+                    }
+                  }
+                },
+                {
+                  "when": {
+                    "not": {
+                      "field": "year",
+                      "op": "in",
+                      "value": [
+                        "2010",
+                        "2019",
+                        "2030",
+                        "2040",
+                        "2050"
+                      ]
+                    }
+                  },
+                  "then": {
+                    "fn": "setFields",
+                    "args": {
+                      "set": {
+                        "last_status": "⚠ Unsupported year — tap the setup card and pick 2010, 2019, 2030, 2040 or 2050."
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "Runs record locally with a full setup snapshot — the server call is wired but the endpoint is locked today (About has the full status)."
+          },
+          {
+            "type": "cards",
+            "table": "runs",
+            "title": "city",
+            "subtitle": "status",
+            "search": true,
+            "searchColumns": [
+              "city",
+              "status",
+              "note",
+              "model_version"
+            ],
+            "sortBy": "when",
+            "sortDir": "desc",
+            "tags": [
+              {
+                "column": "state",
+                "colors": {
+                  "recorded": "purple",
+                  "done": "green",
+                  "warned": "amber",
+                  "audit-failed": "coral"
+                }
+              },
+              {
+                "column": "year"
+              },
+              {
+                "column": "tier",
+                "colors": {
+                  "focused": "green",
+                  "exploratory": "amber"
+                }
+              }
+            ],
+            "expandable": true,
+            "expandFields": [
+              {
+                "column": "when",
+                "label": "When"
+              },
+              {
+                "column": "model_id",
+                "label": "Model"
+              },
+              {
+                "column": "model_version",
+                "label": "Model version"
+              },
+              {
+                "column": "zone_system",
+                "label": "Zone system"
+              },
+              {
+                "column": "beta",
+                "label": "Beta (calibrated)"
+              },
+              {
+                "column": "calib",
+                "label": "transit_calib"
+              },
+              {
+                "column": "calib_method",
+                "label": "Calibration method"
+              },
+              {
+                "column": "note",
+                "label": "Scenario note"
+              },
+              {
+                "column": "transit_pct",
+                "label": "Transit %",
+                "format": "number",
+                "decimals": 1
+              },
+              {
+                "column": "avg_trip_mi",
+                "label": "Avg trip (mi)",
+                "format": "number",
+                "decimals": 2
+              },
+              {
+                "column": "total_trips",
+                "label": "Total trips",
+                "format": "compact"
+              },
+              {
+                "column": "n_zones",
+                "label": "Zones"
+              },
+              {
+                "column": "soundness",
+                "label": "Soundness"
+              }
+            ],
+            "action": {
+              "fn": "editRow"
+            },
+            "expandSingle": true,
+            "expandChevron": true
+          },
+          {
+            "type": "text",
+            "style": "eyebrow",
+            "value": "Endpoint"
+          },
+          {
+            "type": "button",
+            "label": "Health check",
+            "icon": "monitor_heart",
+            "action": {
+              "chain": [
+                {
+                  "fn": "setFields",
+                  "args": {
+                    "table": "run_config",
+                    "id": "cfg",
+                    "set": {
+                      "last_status": "→ Health check sent — service info appears below when the endpoint answers."
+                    }
+                  }
+                },
+                {
+                  "fn": "updateRows",
+                  "args": {
+                    "table": "endpoint_info",
+                    "set": {
+                      "service": "checking… (if this text stays: no reply — endpoint locked or offline)"
+                    }
+                  }
+                },
+                {
+                  "fn": "http",
+                  "onError": "continue",
+                  "args": {
+                    "url": "https://167.233.64.97/model/health",
+                    "method": "GET",
+                    "into": {
+                      "table": "endpoint_info",
+                      "mode": "replace"
+                    },
+                    "timeoutMs": 20000
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "table",
+            "table": "endpoint_info",
+            "columns": [
+              "service",
+              "checked"
+            ],
+            "height": 120,
+            "action": {
+              "fn": "editRow"
+            }
+          }
+        ]
+      }
+    },
+    "catalog": {
+      "title": "Registries",
+      "body": {
+        "type": "column",
+        "children": [
+          {
+            "type": "segments",
+            "segments": [
+              {
+                "label": "Steps",
+                "child": {
+                  "type": "column",
+                  "children": [
+                    {
+                      "type": "cards",
+                      "table": "model_steps",
+                      "title": "label",
+                      "subtitle": "sublabel",
+                      "tags": [
+                        {
+                          "column": "kind",
+                          "colors": {
+                            "in": "teal",
+                            "process": "purple",
+                            "out": "amber"
+                          }
+                        }
+                      ],
+                      "expandable": true,
+                      "open": "Step detail",
+                      "expandFields": [
+                        {
+                          "column": "inputs",
+                          "label": "Data in"
+                        },
+                        {
+                          "column": "outputs",
+                          "label": "Data out"
+                        },
+                        {
+                          "column": "why",
+                          "label": "Why this method"
+                        },
+                        {
+                          "column": "cons",
+                          "label": "Cons / limits"
+                        },
+                        {
+                          "column": "alternatives",
+                          "label": "Swap-in alternatives"
+                        },
+                        {
+                          "column": "method",
+                          "label": "Method"
+                        }
+                      ],
+                      "action": {
+                        "fn": "editRow"
+                      },
+                      "expandSingle": true,
+                      "expandChevron": true
+                    },
+                    {
+                      "type": "text",
+                      "style": "eyebrow",
+                      "value": "Arrows — what flows between steps"
+                    },
+                    {
+                      "type": "table",
+                      "table": "step_links",
+                      "columns": [
+                        "from",
+                        "to",
+                        "carries",
+                        "kind"
+                      ],
+                      "height": 240,
+                      "action": {
+                        "fn": "editRow"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "label": "Cities",
+                "child": {
+                  "type": "cards",
+                  "table": "cities",
+                  "title": "name",
+                  "subtitle": "note",
+                  "collapsible": true,
+                  "sort": {
+                    "column": "transit_pct",
+                    "dir": "desc"
+                  },
+                  "groupBy": "country",
+                  "groupByOptions": [
+                    {
+                      "label": "Country",
+                      "column": "country"
+                    },
+                    {
+                      "label": "Tier",
+                      "column": "tier"
+                    }
+                  ],
+                  "tags": [
+                    {
+                      "column": "tier",
+                      "colors": {
+                        "focused": "green",
+                        "exploratory": "amber"
+                      }
+                    }
+                  ],
+                  "expandable": true,
+                  "expandFields": [
+                    {
+                      "column": "transit_pct",
+                      "label": "Transit share %"
+                    },
+                    {
+                      "column": "role",
+                      "label": "Role"
+                    }
+                  ],
+                  "action": {
+                    "fn": "editRow"
+                  },
+                  "expandSingle": true,
+                  "expandChevron": true
+                }
+              },
+              {
+                "label": "Zones & modes",
+                "child": {
+                  "type": "column",
+                  "children": [
+                    {
+                      "type": "cards",
+                      "table": "zone_systems",
+                      "title": "name",
+                      "subtitle": "validation",
+                      "tags": [
+                        {
+                          "column": "fidelity",
+                          "colors": {
+                            "exact": "green",
+                            "high": "teal",
+                            "medium": "amber",
+                            "model": "blue",
+                            "custom": "purple"
+                          }
+                        }
+                      ],
+                      "expandable": true,
+                      "open": "Zone system detail",
+                      "expandFields": [
+                        {
+                          "column": "count",
+                          "label": "Zones"
+                        },
+                        {
+                          "column": "geography",
+                          "label": "Geography"
+                        },
+                        {
+                          "column": "conversion",
+                          "label": "Conversion / crosswalk"
+                        },
+                        {
+                          "column": "validation",
+                          "label": "Validation (measured)"
+                        },
+                        {
+                          "column": "note",
+                          "label": "Note"
+                        }
+                      ],
+                      "action": {
+                        "fn": "editRow"
+                      },
+                      "expandSingle": true,
+                      "expandChevron": true
+                    },
+                    {
+                      "type": "text",
+                      "style": "eyebrow",
+                      "value": "Modes"
+                    },
+                    {
+                      "type": "cards",
+                      "table": "modes",
+                      "title": "mode",
+                      "subtitle": "comparability",
+                      "tags": [
+                        {
+                          "column": "status",
+                          "colors": {
+                            "live": "green",
+                            "partial": "amber",
+                            "planned": "gray"
+                          }
+                        }
+                      ],
+                      "expandable": true,
+                      "expandFields": [
+                        {
+                          "column": "scale",
+                          "label": "Scales"
+                        },
+                        {
+                          "column": "status",
+                          "label": "Status"
+                        }
+                      ],
+                      "action": {
+                        "fn": "editRow"
+                      },
+                      "expandSingle": true,
+                      "expandChevron": true
+                    }
+                  ]
+                }
+              },
+              {
+                "label": "Methods",
+                "child": {
+                  "type": "cards",
+                  "table": "methods",
+                  "title": "method",
+                  "subtitle": "purpose",
+                  "expandable": true,
+                  "open": "Method detail",
+                  "expandFields": [
+                    {
+                      "column": "when_use",
+                      "label": "When to use"
+                    },
+                    {
+                      "column": "approach",
+                      "label": "Approach / formula"
+                    },
+                    {
+                      "column": "cons",
+                      "label": "Cons / limits"
+                    },
+                    {
+                      "column": "documentation",
+                      "label": "Must document"
+                    },
+                    {
+                      "column": "intent",
+                      "label": "Intent"
+                    },
+                    {
+                      "column": "hf_repo",
+                      "label": "HuggingFace repo"
+                    }
+                  ],
+                  "action": {
+                    "fn": "editRow"
+                  },
+                  "search": true,
+                  "searchColumns": [
+                    "method",
+                    "purpose"
+                  ],
+                  "expandSingle": true,
+                  "expandChevron": true
+                }
+              },
+              {
+                "label": "Metrics & wellbeing",
+                "child": {
+                  "type": "column",
+                  "children": [
+                    {
+                      "type": "cards",
+                      "table": "metric_families",
+                      "title": "metric",
+                      "subtitle": "how_computed",
+                      "groupBy": "family",
+                      "collapsible": true,
+                      "expandable": true,
+                      "expandFields": [
+                        {
+                          "column": "unit",
+                          "label": "Unit"
+                        },
+                        {
+                          "column": "source_dataset",
+                          "label": "Source dataset"
+                        },
+                        {
+                          "column": "model",
+                          "label": "Model / layer"
+                        }
+                      ],
+                      "tags": [
+                        {
+                          "column": "status",
+                          "colors": {
+                            "live": "green",
+                            "proxy": "amber",
+                            "planned": "coral"
+                          }
+                        }
+                      ],
+                      "action": {
+                        "fn": "editRow"
+                      },
+                      "search": true,
+                      "searchColumns": [
+                        "metric",
+                        "family",
+                        "source_dataset"
+                      ],
+                      "expandSingle": true,
+                      "expandChevron": true
+                    },
+                    {
+                      "type": "text",
+                      "style": "eyebrow",
+                      "value": "Wellbeing factors"
+                    },
+                    {
+                      "type": "cards",
+                      "table": "wellbeing_factors",
+                      "title": "factor",
+                      "subtitle": "basis",
+                      "tags": [
+                        {
+                          "column": "core",
+                          "colors": {
+                            "true": "green",
+                            "false": "gray"
+                          }
+                        },
+                        {
+                          "column": "dimension"
+                        }
+                      ],
+                      "expandable": true,
+                      "open": "Factor detail",
+                      "expandFields": [
+                        {
+                          "column": "source",
+                          "label": "Data source"
+                        },
+                        {
+                          "column": "why",
+                          "label": "Why included"
+                        },
+                        {
+                          "column": "cons",
+                          "label": "Cons / limits"
+                        },
+                        {
+                          "column": "weight",
+                          "label": "Weight (adjustable)"
+                        },
+                        {
+                          "column": "core",
+                          "label": "Core (predetermined)"
+                        }
+                      ],
+                      "action": {
+                        "fn": "editRow"
+                      },
+                      "expandSingle": true,
+                      "expandChevron": true
+                    }
+                  ]
+                }
+              },
+              {
+                "label": "Algorithm layers",
+                "child": {
+                  "type": "column",
+                  "children": [
+                    {
+                      "type": "text",
+                      "style": "caption",
+                      "value": "Every algorithm working inside a model, as attach/swap/remove rows: pick the model, the registry method, and the stage (pre-processor, core, post-processor)."
+                    },
+                    {
+                      "type": "button",
+                      "label": "Attach a function to a model",
+                      "icon": "add",
+                      "action": {
+                        "fn": "addRow",
+                        "args": {
+                          "table": "model_layers"
+                        }
+                      }
+                    },
+                    {
+                      "type": "cards",
+                      "table": "model_layers",
+                      "title": "layer",
+                      "subtitle": "algorithm",
+                      "groupBy": "model_id",
+                      "collapsible": true,
+                      "groupsCollapsed": true,
+                      "expandable": true,
+                      "expandSingle": true,
+                      "tableView": false,
+                      "expandChevron": true,
+                      "tags": [
+                        {
+                          "column": "stage"
+                        },
+                        {
+                          "column": "status",
+                          "colors": {
+                            "active": "green",
+                            "selectable": "teal",
+                            "planned": "amber"
+                          }
+                        }
+                      ],
+                      "expandFields": [
+                        {
+                          "column": "role",
+                          "label": "Role in this model"
+                        },
+                        {
+                          "column": "stage",
+                          "label": "Stage"
+                        },
+                        {
+                          "column": "note",
+                          "label": "Note"
+                        }
+                      ],
+                      "action": {
+                        "fn": "editRow"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "label": "Inputs",
+                "child": {
+                  "type": "cards",
+                  "table": "data_inputs",
+                  "title": "input",
+                  "subtitle": "source",
+                  "groupBy": "model_id",
+                  "collapsible": true,
+                  "groupsCollapsed": true,
+                  "expandable": true,
+                  "expandSingle": true,
+                  "tableView": false,
+                  "filterable": true,
+                  "tags": [
+                    {
+                      "column": "status",
+                      "colors": {
+                        "cached": "green",
+                        "live": "green",
+                        "proven": "teal",
+                        "approx": "amber",
+                        "key-gated": "amber",
+                        "planned": "blue",
+                        "gap": "red"
+                      }
+                    }
+                  ],
+                  "expandFields": [
+                    {
+                      "column": "geofence",
+                      "label": "Geofence"
+                    },
+                    {
+                      "column": "granularity",
+                      "label": "Granularity"
+                    },
+                    {
+                      "column": "vintage",
+                      "label": "Vintage"
+                    },
+                    {
+                      "column": "doc",
+                      "label": "Script / doc"
+                    },
+                    {
+                      "column": "stitch",
+                      "label": "Stitched with"
+                    }
+                  ],
+                  "action": {
+                    "fn": "editRow"
+                  },
+                  "expandChevron": true
+                }
+              },
+              {
+                "label": "Stacks",
+                "child": {
+                  "type": "cards",
+                  "table": "model_stacks",
+                  "title": "name",
+                  "subtitle": "purpose",
+                  "expandable": true,
+                  "expandSingle": true,
+                  "tableView": false,
+                  "tags": [
+                    {
+                      "column": "status",
+                      "colors": {
+                        "live": "green",
+                        "opt-in": "teal",
+                        "foundation": "amber",
+                        "direction": "blue"
+                      }
+                    }
+                  ],
+                  "expandFields": [
+                    {
+                      "column": "members",
+                      "label": "Models, in order"
+                    },
+                    {
+                      "column": "seams",
+                      "label": "What crosses each seam"
+                    }
+                  ],
+                  "action": {
+                    "fn": "editRow"
+                  },
+                  "expandChevron": true
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "about": {
+      "title": "About Terrain",
+      "body": {
+        "type": "column",
+        "children": [
+          {
+            "type": "text",
+            "value": "Terrain is a reproducible observatory over the transit model stack. The four-step model computes server-side; Terrain catalogs the models, steps, datasets and layers as editable rows and traces every published number back to its model version, input datasets, soundness checks and confidence tier."
+          },
+          {
+            "type": "text",
+            "style": "eyebrow",
+            "value": "What is real"
+          },
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "Real now: composed views, CSV imports, and the full reproducibility trail. Phase 2 (needs engine): drag-resize panes and a native map that paints your own layers and shows, for the coordinates on screen, the proof-chain from raw source through each pipeline stage to the delivered value. Phase 3 (needs server): live model, custom-zone and GTFS jobs once the /model endpoint authorizes the app."
+          },
+          {
+            "type": "text",
+            "style": "eyebrow",
+            "value": "Confidence tiers"
+          },
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "Focused (green) = calibrated to real sourced local targets, residuals within tolerance, cross-checked. Exploratory (amber) = national or peer anchors — directionally useful, not a calibrated forecast. Promotion is earned by sourced targets and in-tolerance calibration, never by editing the label."
+          },
+          {
+            "type": "text",
+            "style": "eyebrow",
+            "value": "Model runs, honestly"
+          },
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "As of 2026-07-06 every /model/* route answers HTTP 403 — locked at the edge since the token lockdown. ▶ Run scenario therefore records the run locally with a full snapshot of the setup (model version, tier, β, transit_calib, calibration method, zone system, city, year, growth, note). The live call is wired (same chain as Atlas) and degrades silently; the day the edge authorizes this app, the same tap also lands a second row labeled 'live model run' with the server's numbers — the pair shares its launch stamp. β, transit_calib and growth are RECORDED on the run, not sent: today's engine cannot attach table values to request bodies, so the live call carries the year only. Web builds additionally need CORS on /model/*. Only the four-step engine is runnable; the other layers read its outputs. Endpoint swap point: the six http blocks on the Runs screen + app.json meta."
+          },
+          {
+            "type": "text",
+            "style": "eyebrow",
+            "value": "Suite roles"
+          },
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "Terrain's Runs is the cockpit ledger: launches you record here plus curated real run reports. The Scenarios applet remains the deep-provenance archive (run inputs, checks, history); Atlas maps outputs; Model reports charts them."
+          },
+          {
+            "type": "text",
+            "style": "eyebrow",
+            "value": "Seeded history"
+          },
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "Past runs are real transit4 run reports generated 2026-07-01; each row's status names its source file. Exploratory rows hit their targets exactly because targets are transferred anchors; NY/London trip lengths are geometry-limited (β at floor) and carry their real warnings; Boston appears at two resolutions because β honestly moves with zone size (0.0579 at TAZ → 0.1271 at block group). One benign stamp mismatch is preserved, not smoothed: run reports stamp foundation fee6a0b while the changelog stamps f35456f."
+          },
+          {
+            "type": "text",
+            "style": "eyebrow",
+            "value": "Standards conformance"
+          },
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "Standards: FHWA / NCHRP-716 / TMIP / STOPS — pinned per model on the model record."
+          },
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "A defensible model shows its methodology, its cited inputs, its calibration residuals, its re-runnable versions, and its stated limits — Terrain surfaces all five as rows you can inspect."
+          },
+          {
+            "type": "text",
+            "style": "eyebrow",
+            "value": "One universal model, regional settings"
+          },
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "There is one baseline engine — the same four-step model everywhere — never a different model per place. Each region gets settings, not a fork: calibrated β and transit share against sourced local targets, with urban, suburban and rural treated as distinct travel-behavior contexts (suburban deliberately not lumped into either)."
+          },
+          {
+            "type": "text",
+            "style": "eyebrow",
+            "value": "One data format"
+          },
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "Every table in this suite is the same standardized, transportable data object used across all applets — one format for import, export, snapshot, backup, sync and sharing, so a slice you save here opens anywhere."
+          },
+          {
+            "type": "text",
+            "style": "eyebrow",
+            "value": "Safe change practices"
+          },
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "Changes ship additive-only through a schema-compatibility gate; every run pins a model version (git sha); raw sources are never edited in place; and nightly integrity-checked backups are restore-verified. Future-proofing is built into the pipeline, not promised."
+          },
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "Model-card facts (calibration, sources, extents) are curated summaries of the registries — when a registry row changes, update the model card in the same edit. On module lists, a teal stripe marks a swappable component."
+          }
+        ]
+      }
+    },
+    "model": {
+      "title": "Model",
+      "body": {
+        "type": "column",
+        "crossAxis": "stretch",
+        "children": [
+          {
+            "type": "segments",
+            "fill": true,
+            "segments": [
+              {
+                "label": "Diagram",
+                "child": {
+                  "type": "column",
+                  "crossAxis": "stretch",
+                  "children": [
+                    {
+                      "type": "row",
+                      "wrap": true,
+                      "children": [
+                        {
+                          "type": "button",
+                          "label": "Edit model",
+                          "icon": "edit",
+                          "action": {
+                            "fn": "editRow",
+                            "args": {
+                              "table": "models",
+                              "id": "$selected:models"
+                            }
+                          }
+                        },
+                        {
+                          "type": "button",
+                          "label": "Scenarios & runs",
+                          "icon": "history",
+                          "action": {
+                            "fn": "goto",
+                            "args": {
+                              "screen": "runs"
+                            }
+                          }
+                        },
+                        {
+                          "type": "button",
+                          "label": "View output on map",
+                          "icon": "map",
+                          "action": {
+                            "fn": "goto",
+                            "args": {
+                              "screen": "outputs"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "bubl",
+                      "fillPhone": true,
+                      "table": "model_steps",
+                      "filter": {
+                        "column": "model_id",
+                        "value": "$selected:models"
+                      },
+                      "labelColumn": "label",
+                      "sublabelColumn": "sublabel",
+                      "posColumn": "pos",
+                      "parentColumn": "parent",
+                      "colorColumn": "kind",
+                      "colorMap": {
+                        "in": 5,
+                        "process": 3,
+                        "out": 4
+                      },
+                      "bubbleSize": 56,
+                      "linksTable": "step_links",
+                      "linkFromColumn": "from",
+                      "linkToColumn": "to",
+                      "showNested": false,
+                      "pinchZoom": true,
+                      "zoomable": true,
+                      "holdMenu": true,
+                      "onTap": {
+                        "chain": [
+                          {
+                            "fn": "selectRow",
+                            "args": {
+                              "table": "model_steps"
+                            }
+                          },
+                          {
+                            "fn": "goto",
+                            "args": {
+                              "screen": "step_detail"
+                            }
+                          }
+                        ]
+                      },
+                      "onLinkTap": {
+                        "fn": "editRow"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "label": "Summary",
+                "child": {
+                  "type": "column",
+                  "crossAxis": "stretch",
+                  "scroll": true,
+                  "children": [
+                    {
+                      "type": "record",
+                      "table": "models",
+                      "rowId": "$selected:models",
+                      "readOnly": true,
+                      "compact": true,
+                      "emptyText": "Pick a model from the Models list.",
+                      "fields": [
+                        "summary",
+                        "data_status",
+                        "confidence_tier",
+                        "uses_model",
+                        "provider",
+                        "cal_method",
+                        "calibration",
+                        "sources",
+                        "data_in",
+                        "data_out",
+                        "coverage",
+                        "model_version",
+                        "standard"
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "label": "Components",
+                "child": {
+                  "type": "cards",
+                  "table": "model_steps",
+                  "filter": {
+                    "column": "model_id",
+                    "value": "$selected:models"
+                  },
+                  "hideWhenEmpty": true,
+                  "title": "label",
+                  "subtitle": "sublabel",
+                  "groupBy": "role",
+                  "groupOrder": [
+                    "source",
+                    "preprocess",
+                    "engine",
+                    "math",
+                    "subprocess",
+                    "postprocess",
+                    "output"
+                  ],
+                  "collapsible": true,
+                  "groupsCollapsed": false,
+                  "expandable": true,
+                  "expandSingle": true,
+                  "tableView": false,
+                  "expandChevron": true,
+                  "tags": [
+                    {
+                      "column": "kind",
+                      "colors": {
+                        "in": "teal",
+                        "process": "purple",
+                        "out": "amber"
+                      }
+                    }
+                  ],
+                  "accentColumn": "swappable",
+                  "accentColors": {
+                    "true": "teal"
+                  },
+                  "expandFields": [
+                    {
+                      "column": "math",
+                      "label": "Mathematical logic"
+                    },
+                    {
+                      "column": "method",
+                      "label": "Method"
+                    },
+                    {
+                      "column": "inputs",
+                      "label": "Inputs"
+                    },
+                    {
+                      "column": "outputs",
+                      "label": "Outputs"
+                    },
+                    {
+                      "column": "why",
+                      "label": "Why"
+                    },
+                    {
+                      "column": "cons",
+                      "label": "Honest limitation"
+                    },
+                    {
+                      "column": "alternatives",
+                      "label": "Swap options"
+                    }
+                  ],
+                  "action": {
+                    "fn": "editRow"
+                  }
+                }
+              },
+              {
+                "label": "Layers",
+                "child": {
+                  "type": "cards",
+                  "table": "model_layers",
+                  "filter": {
+                    "column": "model_id",
+                    "value": "$selected:models"
+                  },
+                  "hideWhenEmpty": true,
+                  "title": "layer",
+                  "subtitle": "algorithm",
+                  "groupBy": "stage",
+                  "groupOrder": [
+                    "pre",
+                    "core",
+                    "post"
+                  ],
+                  "tags": [
+                    {
+                      "column": "status",
+                      "colors": {
+                        "active": "green",
+                        "selectable": "teal",
+                        "planned": "amber"
+                      }
+                    },
+                    {
+                      "column": "role"
+                    }
+                  ],
+                  "accentColumn": "status",
+                  "accentColors": {
+                    "selectable": "teal"
+                  },
+                  "collapsible": true,
+                  "expandable": true,
+                  "expandSingle": true,
+                  "tableView": false,
+                  "expandChevron": true,
+                  "expandFields": [
+                    {
+                      "column": "role",
+                      "label": "Role"
+                    }
+                  ],
+                  "action": {
+                    "fn": "editRow"
+                  }
+                }
+              },
+              {
+                "label": "Data",
+                "child": {
+                  "type": "cards",
+                  "table": "data_inputs",
+                  "filter": {
+                    "column": "model_id",
+                    "value": "$selected:models"
+                  },
+                  "hideWhenEmpty": true,
+                  "title": "input",
+                  "subtitle": "geofence",
+                  "collapsible": true,
+                  "expandable": true,
+                  "expandSingle": true,
+                  "tableView": false,
+                  "expandChevron": true,
+                  "tags": [
+                    {
+                      "column": "status",
+                      "colors": {
+                        "cached": "green",
+                        "live": "green",
+                        "proven": "teal",
+                        "approx": "amber",
+                        "key-gated": "amber",
+                        "planned": "blue",
+                        "gap": "red"
+                      }
+                    }
+                  ],
+                  "expandFields": [
+                    {
+                      "column": "source",
+                      "label": "Source"
+                    },
+                    {
+                      "column": "regions",
+                      "label": "Regions"
+                    },
+                    {
+                      "column": "shape",
+                      "label": "Data shape"
+                    },
+                    {
+                      "column": "extent",
+                      "label": "Geo extent"
+                    },
+                    {
+                      "column": "vintage",
+                      "label": "Vintage"
+                    },
+                    {
+                      "column": "doc",
+                      "label": "Script / doc"
+                    },
+                    {
+                      "column": "stitch",
+                      "label": "Stitched with"
+                    }
+                  ],
+                  "action": {
+                    "fn": "editRow"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "step_detail": {
+      "title": "Inside this step",
+      "body": {
+        "type": "column",
+        "crossAxis": "stretch",
+        "children": [
+          {
+            "type": "segments",
+            "fill": true,
+            "segments": [
+              {
+                "label": "Inside",
+                "child": {
+                  "type": "column",
+                  "crossAxis": "stretch",
+                  "scroll": true,
+                  "children": [
+                    {
+                      "type": "row",
+                      "wrap": true,
+                      "children": [
+                        {
+                          "type": "button",
+                          "label": "Edit step",
+                          "icon": "edit",
+                          "action": {
+                            "fn": "editRow",
+                            "args": {
+                              "table": "model_steps",
+                              "id": "$selected:model_steps"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "style": "eyebrow",
+                      "value": "Inside this step — tap a sub-component to inspect it"
+                    },
+                    {
+                      "type": "bubl",
+                      "fillPhone": true,
+                      "table": "model_steps",
+                      "filter": {
+                        "column": "parent",
+                        "value": "$selected:model_steps"
+                      },
+                      "labelColumn": "label",
+                      "sublabelColumn": "sublabel",
+                      "posColumn": "pos",
+                      "parentColumn": "parent",
+                      "colorColumn": "kind",
+                      "colorMap": {
+                        "in": 5,
+                        "process": 3,
+                        "out": 4
+                      },
+                      "bubbleSize": 54,
+                      "linksTable": "step_links",
+                      "linkFromColumn": "from",
+                      "linkToColumn": "to",
+                      "pinchZoom": true,
+                      "zoomable": true,
+                      "onTap": {
+                        "fn": "editRow"
+                      },
+                      "onLinkTap": {
+                        "fn": "editRow"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "style": "caption",
+                      "value": "Steps with inner detail (Build multimodal network, Build network graph, Intermediate processing) show their input → geo averaging / geo smoothing → output flow here. A simple step shows just its own record."
+                    }
+                  ]
+                }
+              },
+              {
+                "label": "This step",
+                "child": {
+                  "type": "column",
+                  "crossAxis": "stretch",
+                  "scroll": true,
+                  "children": [
+                    {
+                      "type": "record",
+                      "table": "model_steps",
+                      "rowId": "$selected:model_steps",
+                      "readOnly": true,
+                      "compact": true,
+                      "emptyText": "Tap a process in the model diagram.",
+                      "fields": [
+                        "sublabel",
+                        "role",
+                        "method",
+                        "inputs",
+                        "outputs",
+                        "why",
+                        "cons",
+                        "alternatives",
+                        "math"
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "outputs": {
+      "title": "Model outputs — Seoul transit",
+      "body": {
+        "type": "column",
+        "children": [
+          {
+            "type": "text",
+            "style": "caption",
+            "value": "Real output of the two Korea models: 471 Seoul subway stations pulled live from OpenStreetMap (© OpenStreetMap contributors, ODbL; keyless), built by tool/korea/build_korea.py. The map shows where the stations are (the biggest hubs are labelled); the lists below rank them. Betweenness = bridge importance (removing it fractures journeys); degree = lines/connections; travel time is a network estimate (33 km/h + dwell — honest, not yet timetable-exact) from a picked origin hub — Seoul Station, Express Bus Terminal, Jongno 3-ga, Gangnam, or Hongik Univ."
+          },
+          {
+            "type": "map",
+            "table": "kr_stations",
+            "latColumn": "lat",
+            "lonColumn": "lng",
+            "labelColumn": "maplabel",
+            "markerIcon": "pin",
+            "height": 380,
+            "action": {
+              "fn": "editRow"
+            }
+          },
+          {
+            "type": "divider"
+          },
+          {
+            "type": "segments",
+            "segments": [
+              {
+                "label": "Hubs",
+                "child": {
+                  "type": "column",
+                  "children": [
+                    {
+                      "type": "text",
+                      "style": "eyebrow",
+                      "value": "Centrality — critical transfer hubs first"
+                    },
+                    {
+                      "type": "cards",
+                      "table": "kr_stations",
+                      "title": "name",
+                      "subtitle": "btw_tier",
+                      "sort": {
+                        "column": "rank",
+                        "dir": "asc"
+                      },
+                      "search": true,
+                      "searchColumns": [
+                        "name"
+                      ],
+                      "tags": [
+                        {
+                          "column": "btw_tier",
+                          "colors": {
+                            "critical": "red",
+                            "high": "amber",
+                            "notable": "teal",
+                            "local": "gray"
+                          }
+                        }
+                      ],
+                      "expandable": true,
+                      "open": "Station scores",
+                      "expandFields": [
+                        {
+                          "column": "rank",
+                          "label": "Rank"
+                        },
+                        {
+                          "column": "betweenness",
+                          "label": "Betweenness"
+                        },
+                        {
+                          "column": "degree",
+                          "label": "Lines/connections"
+                        },
+                        {
+                          "column": "pagerank",
+                          "label": "PageRank"
+                        },
+                        {
+                          "column": "closeness",
+                          "label": "Closeness"
+                        }
+                      ],
+                      "action": {
+                        "fn": "editRow"
+                      },
+                      "expandSingle": true,
+                      "expandChevron": true
+                    }
+                  ]
+                }
+              },
+              {
+                "label": "Connectivity",
+                "child": {
+                  "type": "column",
+                  "children": [
+                    {
+                      "type": "text",
+                      "style": "eyebrow",
+                      "value": "Most connections (interchange size)"
+                    },
+                    {
+                      "type": "cards",
+                      "table": "kr_stations",
+                      "title": "name",
+                      "subtitle": "deg_tier",
+                      "sort": {
+                        "column": "degree",
+                        "dir": "desc"
+                      },
+                      "search": true,
+                      "searchColumns": [
+                        "name"
+                      ],
+                      "tags": [
+                        {
+                          "column": "deg_tier",
+                          "colors": {
+                            "hub": "purple",
+                            "major": "blue",
+                            "connector": "teal",
+                            "line": "gray"
+                          }
+                        }
+                      ],
+                      "expandable": true,
+                      "open": "Station scores",
+                      "expandFields": [
+                        {
+                          "column": "degree",
+                          "label": "Lines/connections"
+                        },
+                        {
+                          "column": "btw_tier",
+                          "label": "Hub tier"
+                        },
+                        {
+                          "column": "minutes_from_origin",
+                          "label": "Min from Seoul Stn"
+                        }
+                      ],
+                      "action": {
+                        "fn": "editRow"
+                      },
+                      "expandSingle": true,
+                      "expandChevron": true
+                    }
+                  ]
+                }
+              },
+              {
+                "label": "Travel time",
+                "child": {
+                  "type": "column",
+                  "children": [
+                    {
+                      "type": "text",
+                      "style": "eyebrow",
+                      "value": "Pick an origin hub — estimated minutes from it to all 471 stations (nearest first), banded 0-15/15-30/30-45/45-60/60+"
+                    },
+                    {
+                      "type": "segments",
+                      "segments": [
+                        {
+                          "label": "Seoul Station",
+                          "child": {
+                            "type": "cards",
+                            "table": "kr_stations",
+                            "title": "name",
+                            "subtitle": "tt_band",
+                            "sort": {
+                              "column": "minutes_from_origin",
+                              "dir": "asc"
+                            },
+                            "search": true,
+                            "searchColumns": [
+                              "name"
+                            ],
+                            "tags": [
+                              {
+                                "column": "tt_band",
+                                "colors": {
+                                  "0–15": "green",
+                                  "15–30": "teal",
+                                  "30–45": "amber",
+                                  "45–60": "orange",
+                                  "60+": "red",
+                                  "unreached": "gray"
+                                }
+                              }
+                            ],
+                            "expandable": true,
+                            "open": "Station scores",
+                            "expandFields": [
+                              {
+                                "column": "minutes_from_origin",
+                                "label": "Minutes from Seoul Stn"
+                              },
+                              {
+                                "column": "tt_band",
+                                "label": "Band"
+                              },
+                              {
+                                "column": "degree",
+                                "label": "Lines/connections"
+                              }
+                            ],
+                            "action": {
+                              "fn": "editRow"
+                            },
+                            "expandSingle": true,
+                            "expandChevron": true
+                          }
+                        },
+                        {
+                          "label": "Express Bus Terminal",
+                          "child": {
+                            "type": "cards",
+                            "table": "kr_stations",
+                            "title": "name",
+                            "subtitle": "tt_band_ebt",
+                            "sort": {
+                              "column": "minutes_from_origin_ebt",
+                              "dir": "asc"
+                            },
+                            "search": true,
+                            "searchColumns": [
+                              "name"
+                            ],
+                            "tags": [
+                              {
+                                "column": "tt_band_ebt",
+                                "colors": {
+                                  "0–15": "green",
+                                  "15–30": "teal",
+                                  "30–45": "amber",
+                                  "45–60": "orange",
+                                  "60+": "red",
+                                  "unreached": "gray"
+                                }
+                              }
+                            ],
+                            "expandable": true,
+                            "open": "Station scores",
+                            "expandFields": [
+                              {
+                                "column": "minutes_from_origin_ebt",
+                                "label": "Minutes from Express Bus Terminal"
+                              },
+                              {
+                                "column": "tt_band_ebt",
+                                "label": "Band"
+                              },
+                              {
+                                "column": "degree",
+                                "label": "Lines/connections"
+                              }
+                            ],
+                            "action": {
+                              "fn": "editRow"
+                            },
+                            "expandSingle": true,
+                            "expandChevron": true
+                          }
+                        },
+                        {
+                          "label": "Jongno 3-ga",
+                          "child": {
+                            "type": "cards",
+                            "table": "kr_stations",
+                            "title": "name",
+                            "subtitle": "tt_band_jongno",
+                            "sort": {
+                              "column": "minutes_from_origin_jongno",
+                              "dir": "asc"
+                            },
+                            "search": true,
+                            "searchColumns": [
+                              "name"
+                            ],
+                            "tags": [
+                              {
+                                "column": "tt_band_jongno",
+                                "colors": {
+                                  "0–15": "green",
+                                  "15–30": "teal",
+                                  "30–45": "amber",
+                                  "45–60": "orange",
+                                  "60+": "red",
+                                  "unreached": "gray"
+                                }
+                              }
+                            ],
+                            "expandable": true,
+                            "open": "Station scores",
+                            "expandFields": [
+                              {
+                                "column": "minutes_from_origin_jongno",
+                                "label": "Minutes from Jongno 3-ga"
+                              },
+                              {
+                                "column": "tt_band_jongno",
+                                "label": "Band"
+                              },
+                              {
+                                "column": "degree",
+                                "label": "Lines/connections"
+                              }
+                            ],
+                            "action": {
+                              "fn": "editRow"
+                            },
+                            "expandSingle": true,
+                            "expandChevron": true
+                          }
+                        },
+                        {
+                          "label": "Gangnam",
+                          "child": {
+                            "type": "cards",
+                            "table": "kr_stations",
+                            "title": "name",
+                            "subtitle": "tt_band_gangnam",
+                            "sort": {
+                              "column": "minutes_from_origin_gangnam",
+                              "dir": "asc"
+                            },
+                            "search": true,
+                            "searchColumns": [
+                              "name"
+                            ],
+                            "tags": [
+                              {
+                                "column": "tt_band_gangnam",
+                                "colors": {
+                                  "0–15": "green",
+                                  "15–30": "teal",
+                                  "30–45": "amber",
+                                  "45–60": "orange",
+                                  "60+": "red",
+                                  "unreached": "gray"
+                                }
+                              }
+                            ],
+                            "expandable": true,
+                            "open": "Station scores",
+                            "expandFields": [
+                              {
+                                "column": "minutes_from_origin_gangnam",
+                                "label": "Minutes from Gangnam"
+                              },
+                              {
+                                "column": "tt_band_gangnam",
+                                "label": "Band"
+                              },
+                              {
+                                "column": "degree",
+                                "label": "Lines/connections"
+                              }
+                            ],
+                            "action": {
+                              "fn": "editRow"
+                            },
+                            "expandSingle": true,
+                            "expandChevron": true
+                          }
+                        },
+                        {
+                          "label": "Hongik Univ.",
+                          "child": {
+                            "type": "column",
+                            "children": [
+                              {
+                                "type": "cards",
+                                "table": "kr_stations",
+                                "title": "name",
+                                "subtitle": "tt_band_hongik",
+                                "sort": {
+                                  "column": "minutes_from_origin_hongik",
+                                  "dir": "asc"
+                                },
+                                "search": true,
+                                "searchColumns": [
+                                  "name"
+                                ],
+                                "tags": [
+                                  {
+                                    "column": "tt_band_hongik",
+                                    "colors": {
+                                      "0–15": "green",
+                                      "15–30": "teal",
+                                      "30–45": "amber",
+                                      "45–60": "orange",
+                                      "60+": "red",
+                                      "unreached": "gray"
+                                    }
+                                  }
+                                ],
+                                "expandable": true,
+                                "open": "Station scores",
+                                "expandFields": [
+                                  {
+                                    "column": "minutes_from_origin_hongik",
+                                    "label": "Minutes from Hongik Univ."
+                                  },
+                                  {
+                                    "column": "tt_band_hongik",
+                                    "label": "Band"
+                                  },
+                                  {
+                                    "column": "degree",
+                                    "label": "Lines/connections"
+                                  }
+                                ],
+                                "action": {
+                                  "fn": "editRow"
+                                },
+                                "expandSingle": true,
+                                "expandChevron": true
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

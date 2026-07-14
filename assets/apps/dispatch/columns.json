@@ -1,0 +1,254 @@
+{
+  "entries": [
+    {
+      "name": "title",
+      "type": "text",
+      "label": "Title",
+      "description": "The entry's name (rename it in the tree, or here)."
+    },
+    {
+      "name": "comment",
+      "type": "text",
+      "label": "Comment",
+      "description": "The note / body of this entry — always available, whatever the type."
+    },
+    {
+      "name": "attachment",
+      "type": "attachments",
+      "label": "Image / file",
+      "description": "For an `image` entry: upload an image (or file); it's stored with the entry and can be downloaded or replaced."
+    },
+    {
+      "name": "type",
+      "type": "enum",
+      "label": "Type",
+      "options": [
+        "group",
+        "task",
+        "note",
+        "image",
+        "wireframe",
+        "sheets",
+        "docs",
+        "sketchpad",
+        "goal",
+        "milestone",
+        "item",
+        "decision"
+      ],
+      "default": "note",
+      "description": "group = project folder; task = a piece of work (tasks nest — sub-tasks show in the tasks column); note = a comment in a log (comments nest too — replies); image / wireframe / sheets / docs / sketchpad = an ATTACHMENT object housed by a task or a comment (its own isolated data; opens full-screen). PLAN objects, shown on the Plan screen rather than in a log: goal = an end state a project is driving at; milestone = a checkpoint on the way to a goal; item = something the goal needs (a `requires` edge points goal → item); decision = a choice, past or pending (see decisionKind)."
+    },
+    {
+      "name": "role",
+      "type": "enum",
+      "label": "Role",
+      "options": [
+        "task",
+        "goal",
+        "milestone",
+        "item",
+        "decision"
+      ],
+      "default": "task",
+      "description": "For a work-item (type=task): what it represents. task = work to do; goal = an end state a project drives at; milestone = a checkpoint toward a goal; item = something a goal needs; decision = a choice to make or record (see decisionKind). The Plan screen groups work-items by role."
+    },
+    {
+      "name": "status",
+      "type": "enum",
+      "label": "Status",
+      "options": [
+        "active",
+        "queued",
+        "done"
+      ],
+      "default": "active",
+      "description": "active · queued (backlog) · done"
+    },
+    {
+      "name": "decisionKind",
+      "type": "enum",
+      "label": "Decision kind",
+      "options": [
+        "predetermined",
+        "open",
+        "emergent"
+      ],
+      "description": "Only meaningful on a `decision` entry. predetermined = already settled, we know the answer going in. open = a known question still to be answered. emergent = a choice that only surfaced once the work was underway — kept separate from decisions taken earlier, so hindsight never rewrites the record."
+    },
+    {
+      "name": "order",
+      "type": "number",
+      "label": "Order",
+      "rules": {
+        "hidden": true
+      }
+    },
+    {
+      "name": "createdBy",
+      "type": "ref",
+      "label": "Lead",
+      "refTable": "users",
+      "default": "u_you",
+      "description": "Who started / owns this (the lead). Add collaborators in With."
+    },
+    {
+      "name": "prompting",
+      "type": "ref",
+      "label": "Prompting",
+      "refTable": "users",
+      "multi": true,
+      "description": "Who this is directed at / asked to respond."
+    },
+    {
+      "name": "with",
+      "type": "ref",
+      "label": "With",
+      "refTable": "users",
+      "multi": true,
+      "description": "Collaborators beyond the lead — associate multiple people (e.g. lead You, with Claude) instead of one merged person."
+    },
+    {
+      "name": "bottleneck",
+      "type": "boolean",
+      "label": "Bottleneck",
+      "description": "Mark a project or task that is holding others up. A marker, not a status."
+    },
+    {
+      "name": "blocked",
+      "type": "boolean",
+      "label": "Blocked",
+      "description": "Mark a project or task that can't proceed yet (waiting on something). A marker, orthogonal to status."
+    },
+    {
+      "name": "awaiting",
+      "type": "boolean",
+      "label": "Awaiting reply",
+      "description": "True while this is an OPEN turn waiting on a response — set automatically when a comment is addressed to someone, cleared when it's marked answered. Shown in the Inbox (open turns), separate from the work status (a task can be active AND awaiting)."
+    },
+    {
+      "name": "completedBy",
+      "type": "ref",
+      "label": "Completed by",
+      "refTable": "users",
+      "description": "Who actually finished it — set by the completing user, which is not always whoever created it."
+    },
+    {
+      "name": "created",
+      "type": "date",
+      "label": "Created",
+      "default": "now"
+    },
+    {
+      "name": "postedAt",
+      "type": "dateTime",
+      "label": "Posted",
+      "rules": {
+        "hidden": true
+      },
+      "description": "The log's precise post instant, stamped once when a comment is added and never touched again (unlike the engine's volatile `updatedAt`), so the '· 2h ago' clock stays accurate AND doesn't reset on edit. A dateTime (not a date) column so same-day comments can still read 'just now' / '5m ago'; `created` stays the honest day-level date shown on the record."
+    },
+    {
+      "name": "finishedAt",
+      "type": "date",
+      "label": "Finished",
+      "description": "The day the work was done. Left empty while it is unfinished — an empty finish date is a fact, not a gap to fill in."
+    },
+    {
+      "name": "editedAt",
+      "type": "date",
+      "label": "Edited",
+      "description": "Last day this was meaningfully revised. Distinct from the engine's own `updatedAt` stamp, which is rewritten on every save (and on import), so it can never carry a historical date."
+    },
+    {
+      "name": "editedBy",
+      "type": "ref",
+      "label": "Edited by",
+      "refTable": "users",
+      "description": "Who last meaningfully revised this — stamped on a save that actually changes a field (not on create, not on a no-op open)."
+    },
+    {
+      "name": "updatedAt",
+      "type": "text",
+      "label": "Updated",
+      "rules": {
+        "hidden": true
+      },
+      "description": "DEPRECATED — collides with the engine's reserved `updatedAt` (auto-rewritten every save), so it can't hold history; the log now shows `created` instead. Kept declared (never dropped in place) so existing rows' data is not orphaned."
+    },
+    {
+      "name": "pos",
+      "type": "text",
+      "label": "Map position",
+      "rules": {
+        "hidden": true
+      }
+    },
+    {
+      "name": "mapNest",
+      "type": "text",
+      "label": "Map nest",
+      "rules": {
+        "hidden": true
+      }
+    }
+  ],
+  "relations": [
+    {
+      "name": "fromId",
+      "type": "ref",
+      "label": "From",
+      "refTable": "entries",
+      "required": true,
+      "description": "The source node of this relationship."
+    },
+    {
+      "name": "toId",
+      "type": "ref",
+      "label": "To",
+      "refTable": "entries",
+      "required": true,
+      "description": "The target node of this relationship."
+    },
+    {
+      "name": "type",
+      "type": "enum",
+      "label": "Relationship",
+      "options": [
+        "contains",
+        "references",
+        "depends_on",
+        "relates_to",
+        "blocks",
+        "requires",
+        "completes",
+        "supersedes"
+      ],
+      "default": "relates_to",
+      "description": "How the two nodes relate. `contains` is the structural parent→child (drives the tree); the rest are free cross-links (any direction, may be mutual). Plan edges: `requires` (goal → item it needs), `completes` (milestone/task → goal it advances), `supersedes` (a decision → the earlier one it overrides). Custom types allowed."
+    },
+    {
+      "name": "order",
+      "type": "number",
+      "label": "Order",
+      "rules": {
+        "hidden": true
+      },
+      "description": "Display order among a node's contained children."
+    },
+    {
+      "name": "label",
+      "type": "text",
+      "label": "Label",
+      "description": "Optional note on the edge (e.g. 'blocked on the bug fix')."
+    }
+  ],
+  "users": [
+    {
+      "name": "name",
+      "type": "text",
+      "label": "Name",
+      "required": true
+    }
+  ]
+}

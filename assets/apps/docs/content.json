@@ -1,0 +1,12 @@
+{
+  "pages": [
+    {
+      "id": "pg_welcome",
+      "parentId": "",
+      "kind": "doc",
+      "title": "Untitled",
+      "order": 0,
+      "body": ""
+    }
+  ]
+}

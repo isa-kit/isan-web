@@ -1,0 +1,50 @@
+{
+  "pages": [
+    {
+      "name": "title",
+      "type": "text",
+      "label": "Title",
+      "required": true
+    },
+    {
+      "name": "parentId",
+      "type": "ref",
+      "refTable": "pages",
+      "label": "Parent page",
+      "advanced": true
+    },
+    {
+      "name": "body",
+      "type": "richtext",
+      "label": "Document"
+    },
+    {
+      "name": "attachments",
+      "type": "attachments",
+      "label": "Attachments"
+    },
+    {
+      "name": "pinned",
+      "type": "boolean",
+      "label": "Pinned",
+      "advanced": true
+    },
+    {
+      "name": "order",
+      "type": "number",
+      "label": "Order",
+      "advanced": true
+    },
+    {
+      "name": "updatedAt",
+      "type": "date",
+      "label": "Updated",
+      "advanced": true
+    },
+    {
+      "name": "kind",
+      "type": "text",
+      "label": "Kind"
+    }
+  ]
+}
